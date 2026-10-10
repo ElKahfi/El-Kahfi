@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+<defs>
+  <radialGradient id="bg"><stop stop-color="#f5f4ed"/><stop offset="1" stop-color="#d0d1c8"/></radialGradient>
+  <radialGradient id="sphere" cx=".32" cy=".25" r=".75"><stop stop-color="#fffef5"/><stop offset=".3" stop-color="#e0e3d7"/><stop offset=".64" stop-color="#8b9482"/><stop offset=".87" stop-color="#3e4a33"/><stop offset="1" stop-color="#667259"/></radialGradient>
+  <radialGradient id="small" cx=".3" cy=".25" r=".75"><stop stop-color="#e9eddf"/><stop offset=".45" stop-color="#87927c"/><stop offset=".85" stop-color="#303d25"/><stop offset="1" stop-color="#5d6b4e"/></radialGradient>
+  <filter id="shadow" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<path fill="url(#bg)" d="M0 0h1800v1100H0z"/>
+<g stroke="#707b6020" fill="none"><circle cx="900" cy="490" r="380"/><path d="M350 490h1100M900 100v780" stroke-dasharray="3 8"/></g>
+<ellipse cx="925" cy="800" rx="245" ry="22" fill="#455237" opacity=".35" filter="url(#shadow)"/>
+<ellipse cx="1220" cy="814" rx="78" ry="15" fill="#455237" opacity=".28" filter="url(#shadow)"/>
+<g transform="rotate(-30 900 480)"><ellipse cx="900" cy="480" rx="420" ry="144" fill="none" stroke="#6e7b61" stroke-width="3"/><circle cx="900" cy="480" r="245" fill="url(#sphere)"/><path d="M480 480a420 144 0 0 0 840 0" fill="none" stroke="#fdfef4" stroke-width="5"/><path d="M480 483a420 144 0 0 0 840 0" fill="none" stroke="#828d74" stroke-width="1"/></g>
+<circle cx="1212" cy="686" r="88" fill="url(#small)"/><circle cx="593" cy="298" r="48" fill="url(#sphere)"/>
+<g fill="#626e53" font-family="monospace" font-size="11" letter-spacing="3"><text x="90" y="485" transform="rotate(-90 90 485)">CONNECTION / 003</text><text x="1550" y="510">FIG. 03</text></g>
+<g stroke="#667b454d"><path d="M1480 503h-145M1320 497v12M500 170v-20M490 160h20"/></g>
+</svg>

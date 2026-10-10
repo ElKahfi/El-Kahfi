@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+<defs>
+  <radialGradient id="bg"><stop stop-color="#40443e"/><stop offset="1" stop-color="#191c19"/></radialGradient>
+  <linearGradient id="face" x1="0" x2="1" y2="1"><stop stop-color="#c8cdc2"/><stop offset=".5" stop-color="#828b7c"/><stop offset="1" stop-color="#3e4938"/></linearGradient>
+  <linearGradient id="side" x1="0" x2="1"><stop stop-color="#697362"/><stop offset="1" stop-color="#283223"/></linearGradient>
+  <pattern id="grid" width="55" height="55" patternUnits="userSpaceOnUse"><path d="M55 0H0v55" fill="none" stroke="#d3d9c20c"/></pattern>
+  <filter id="shadow"><feGaussianBlur stdDeviation="20"/></filter>
+  <g id="floor"><path d="m620 0 320-115 230 105-320 122Z" fill="url(#face)" stroke="#c7cfc0" stroke-width="1"/><path d="M620 0v14l230 112v-14Z" fill="#5c6755"/><path d="m850 112 320-122v14L850 126Z" fill="url(#side)"/></g>
+</defs>
+<path fill="url(#bg)" d="M0 0h1800v1100H0z"/><path fill="url(#grid)" d="M0 0h1800v1100H0z"/>
+<ellipse cx="960" cy="840" rx="310" ry="46" fill="#080e06" opacity=".6" filter="url(#shadow)"/>
+<g transform="translate(0 -15)"><use href="#floor" y="680"/><use href="#floor" y="615"/><use href="#floor" y="550"/><use href="#floor" y="485"/><use href="#floor" y="420"/><use href="#floor" y="355"/><use href="#floor" y="290"/>
+<g stroke="#dce3d0" stroke-width="3"><path d="M650 285v397M713 315v395M779 347v395M846 380v395M912 355v397M980 329v397M1048 303v397M1116 277v397"/></g>
+<g stroke="#84917a" stroke-width="1"><path d="M674 248v399M740 224v399M808 200v399M875 176v399M940 152v399M1008 183v399M1076 214v399M1144 245v399"/></g>
+</g>
+<g fill="#b9c3af" font-family="monospace" font-size="11" letter-spacing="3"><text x="90" y="460" transform="rotate(-90 90 460)">STRUCTURE / 002</text><text x="1550" y="530">FIG. 02</text></g>
+<g stroke="#b7c6a54d"><path d="M1460 523h-145M1300 517v12M500 220v-20M490 210h20M1300 820v-20M1290 810h20"/></g>
+</svg>

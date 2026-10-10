@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RE:You</title>
+</head>
+<body>
+    <header class="Button-Top">
+        <a class="Navbar-Name" href="RE_website.html" onclick="refreshPage(); return false;">ELKAHFI</a>
+
+        <div class="Nav-Right">
+            <button type="button" class="Button-Homepage nav-action" onclick="refreshPage()">WORK WITH ME</button>
+            <a class="Button-Creator nav-action" href="HyperLinks/Creator.Html">CREATOR</a>
+            <button type="button" class="Button-About nav-action" onclick="scrollToAbout()">ABOUT ME</button>
+        </div>
+    </header>
+    <section id="Opening">
+        <div class="REYOU">
+            <p class="Title-Brand-RE">EL:</p>
+            <a class="Title-Brand-YOU" href="HyperLinks/YOU.html">KAHFI</a>
+        </div>
+        <p class="Moto">System Design</p>
+    </section>
+    <section id="Body">
+        <h1>My Name is EX</h1>
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+            sapiente iste minima iusto nobis! Praesentium commodi adipisci doloribus
+            provident laboriosam molestias a exercitationem saepe sit, quia quos
+            voluptatibus magnam veniam!
+        </p>
+    </section>
+    <section id="About" style="display: none;">
+        <h2>About the Creator</h2>
+        <p>Phone: 123-456-7890</p>
+        <p>Email: creator@example.com</p>
+        <p>More information about the creator goes here.</p>
+    </section>
+    <script>
+        function refreshPage() {
+            window.location.reload();
+        }
+
+        function scrollToAbout() {
+            const aboutSection = document.getElementById("About");
+            aboutSection.scrollIntoView({ behavior: "smooth" });
+            aboutSection.style.display = "block"; // Show the About section
+        }
+    </script>
+</body>
+</html>
