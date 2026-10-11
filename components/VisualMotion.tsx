@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-// Pointer motion owns only these variables. ScrollTrigger owns --reveal-y;
+// Pointer motion owns only these variables. The scroll follower owns --reveal-y;
 // CSS combines them once on the artwork, never on its pinned panel or link.
 const properties = ["--pointer-x", "--pointer-y", "--visual-scale"];
 
@@ -15,6 +15,11 @@ export function VisualMotion() {
       dispose();
       screens.forEach((screen) => properties.forEach((property) => screen.style.removeProperty(property)));
       if (!media.matches) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => target.toggleAttribute("data-motion-visible", isIntersecting));
+      });
+      screens.forEach((screen) => observer.observe(screen));
 
       const states = screens.map((screen) => ({ screen, hero: screen.classList.contains("hero"), x: 0, y: 0, scale: 1, targetX: 0, targetY: 0, targetScale: 1 }));
       let pointer: { x: number; y: number } | null = null;
@@ -72,14 +77,18 @@ export function VisualMotion() {
       const keyboard = (event: KeyboardEvent) => { if (event.key === "Tab" || event.key === "Escape") reset(); };
       window.addEventListener("pointermove", move, { passive: true });
       window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("curtainsettled", update);
       window.addEventListener("resize", reset);
       window.addEventListener("blur", reset);
       window.addEventListener("keydown", keyboard);
       document.documentElement.addEventListener("pointerleave", reset);
       dispose = () => {
+        observer.disconnect();
+        screens.forEach((screen) => screen.removeAttribute("data-motion-visible"));
         cancelAnimationFrame(frame);
         window.removeEventListener("pointermove", move);
         window.removeEventListener("scroll", update);
+        window.removeEventListener("curtainsettled", update);
         window.removeEventListener("resize", reset);
         window.removeEventListener("blur", reset);
         window.removeEventListener("keydown", keyboard);

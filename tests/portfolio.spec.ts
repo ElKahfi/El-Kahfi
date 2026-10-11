@@ -98,7 +98,7 @@ test("menu opens by hover or tap, closes after selection, and supports keyboard 
 test("each curtain covers a stationary panel at start, midpoint and end, in both directions", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Touch and reduced motion use ordinary flow");
   await page.goto("/");
-  await expect(page.locator(".pin-spacer")).toHaveCount(3);
+  await expect(page.locator(".spring-curtains")).toHaveCount(1);
   const height = await page.evaluate(() => innerHeight);
   const panels = page.locator(".screen");
   const top = async (index: number) => panels.nth(index).evaluate((el) => el.getBoundingClientRect().top);
@@ -118,7 +118,7 @@ test("each curtain covers a stationary panel at start, midpoint and end, in both
 
 test("browser back restores a project reached without a hash", async ({ page }, testInfo) => {
   await page.goto("/");
-  if (testInfo.project.name === "desktop") await expect(page.locator(".pin-spacer")).toHaveCount(3);
+  if (testInfo.project.name === "desktop") await expect(page.locator(".spring-curtains")).toHaveCount(1);
   const trigger = page.getByRole("button", { name: "Navigation menu" });
   await trigger.click();
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
@@ -152,15 +152,15 @@ test("browser back restores hash navigation and resizing keeps anchor positions 
 test("changing reduced-motion preference removes pinning and reveals a readable static layout", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Live preference change on desktop");
   await page.goto("/");
-  await expect(page.locator(".pin-spacer")).toHaveCount(3);
+  await expect(page.locator(".spring-curtains")).toHaveCount(1);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".pin-spacer")).toHaveCount(0);
+  await expect(page.locator(".spring-curtains")).toHaveCount(0);
   await expect(page.locator(".hero-lit .hero-name")).toHaveCSS("transform", "none");
   await page.evaluate(() => scrollTo({ top: 450, behavior: "instant" }));
   await expect.poll(() => page.locator(".hero").evaluate((el) => el.getBoundingClientRect().top)).toBe(-450);
   await expect(page.locator("#work .panel-summary")).toBeVisible();
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await expect(page.locator(".pin-spacer")).toHaveCount(3);
+  await expect(page.locator(".spring-curtains")).toHaveCount(1);
 });
 
 test("home renders, images load, and layout stays within viewport", async ({ page }, testInfo) => {
@@ -233,7 +233,7 @@ test("keyboard users can skip navigation and open a project", async ({ page, isM
 test("spotlight follows pointer only with fine pointer and motion enabled", async ({ page }, testInfo) => {
   await page.goto("/");
   const shade = page.locator(".hero");
-  if (testInfo.project.name === "desktop") await expect(page.locator(".pin-spacer")).toHaveCount(3);
+  if (testInfo.project.name === "desktop") await expect(page.locator(".spring-curtains")).toHaveCount(1);
   await page.mouse.move(250, 220, { steps: 5 });
   if (testInfo.project.name === "desktop") {
     await expect.poll(() => shade.evaluate((el) => parseFloat((el as HTMLElement).style.getPropertyValue("--light-x")))).toBeGreaterThan(200);
@@ -294,7 +294,7 @@ test("scroll settles near panels and reverses; reduced motion stays unanimated",
     await page.waitForTimeout(1100);
     expect(await page.evaluate(() => scrollY)).toBe(initial);
   } else {
-    await expect(page.locator(".pin-spacer")).toHaveCount(3);
+    await expect(page.locator(".spring-curtains")).toHaveCount(1);
     // Mid-transition input must not be pulled toward a distant slide boundary.
     await page.mouse.wheel(0, 450);
     await expect.poll(() => page.evaluate(() => scrollY)).toBe(450);

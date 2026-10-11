@@ -95,7 +95,7 @@ These describe the original HTML prototype, retained for reference. They are not
 ## DEC-007 — Layer incoming curtains over stationary panels
 
 - **Date:** 2026-10-10
-- **Status:** Accepted — implemented; supersedes DEC-006's ordinary-flow/parallax transition choice
+- **Status:** Accepted geometry; pin implementation superseded by DEC-012. Supersedes DEC-006's ordinary-flow/parallax transition choice
 - **Decision maker:** Project owner, through the explicit refinement specification
 - **Context:** Ordinary scrolling moved both sections and failed to deliver the requested physical sliding-panel effect.
 - **Decision:** Use GSAP ScrollTrigger to pin the previous section while the next full-screen opaque panel rises over it on a higher layer. Repeat from the hero through all three projects, with continuous native scroll control, reversal, and gentle desktop snapping.
@@ -139,13 +139,24 @@ These describe the original HTML prototype, retained for reference. They are not
 ## DEC-011 — Add depth inside native curtains with coordinated artwork motion
 
 - **Date:** 2026-10-10
-- **Status:** Accepted — implemented; updates DEC-010's settle timing and supersedes DEC-007's touch curtain behavior
+- **Status:** Partially superseded by DEC-012 for scroll following and reveal; pointer motion and static touch fallback remain accepted
 - **Decision maker:** Project owner specified the motion direction and constraints; Codex selected bounded amplitudes and timings
 - **Context:** The owner wants more perceptible glide, subtle enlargement, cursor-responsive hero depth, inverse project parallax, and a slower artwork reveal within each rising panel.
 - **Decision:** Keep the opaque curtain edge directly controlled by native scrolling. Add up to 2% artwork scale, small hero translation toward the pointer, inverse project translation (up to 12px/10px), and a 48px scroll reveal with 0.28-second catch-up. Keep snapping within 8% of a boundary, settling over 0.24–0.42 seconds. Use independent CSS variables composed into one artwork transform. Touch now uses ordinary scrolling and static artwork, as required by the latest brief.
 - **Rationale:** Artwork motion adds depth and a sense of momentum without delaying native scroll input or disturbing the stationary panel geometry. Bounded scale/translation preserves readability and link placement. A single composed transform avoids competing animation controllers.
 - **Alternatives considered:** Inertia libraries and wheel interception conflict with the requested control. Scaling the entire pinned panel would move controls and create edge gaps. Applying cursor motion to menus, previews, About, or detail pages exceeds the requested effect.
 - **Consequences:** Hero light and both text layers must remain aligned. Pointer exit returns artwork to rest; cleanup handles live reduced-motion changes, resizing, and routes. Reduced motion disables all added effects. Final subjective motion feel and physical-device performance remain review points.
+
+## DEC-012 — Spring-follow native scroll and counter-translate project images
+
+- **Date:** 2026-10-11
+- **Status:** Accepted — implemented; supersedes DEC-007's pin implementation and DEC-011's directly scroll-bound curtain edge and 48px reveal.
+- **Decision maker:** Project owner requested spring smoothing and slower images; Codex selected the implementation and tuning.
+- **Context:** The owner reports choppy mouse-wheel steps despite smooth trackpad input. Smoothing artwork alone leaves the curtain edge visibly stepped.
+- **Decision:** Keep native document scroll and stable anchor slots, with separate fixed visual surfaces driven by one ScrollTrigger target and a critically damped frame loop. Use mass 1, stiffness 900/damping 60; fine pixel updates below 40px use 3600/120. Clamp overshoot, reset opposing momentum, and stop frames after settling. Counter-translate project art by 75% of incoming-panel distance so it travels 25% as far in the viewport, reaching zero offset at rest.
+- **Rationale:** Separate visual progress smooths discrete input while retaining native input, anchor positions, keyboard access, and history. A shared coordinate keeps image and curtain motion synchronized. Independent pointer/reveal variables compose into one artwork transform.
+- **Alternatives considered:** Long CSS transitions, a second scrub lag, wheel interception, forced slide advancement, and another scrolling library would add delay or competing controllers. No dependencies were added.
+- **Consequences:** Typical wheel catch-up targets 200–450ms without bounce. Small updates respond faster; this is not hardware detection. Navigation bypasses wheel smoothing, and snapping remains confined to 8% of a boundary after 400ms, lasting 240–420ms. Touch/reduced motion use static flow. Surface movement is only for curtain coverage; controls receive no artwork parallax. Fixed layers, focus, restoration, reversal, and live preference cleanup need regression coverage. Physical input feel and Safari/Firefox remain unverified.
 
 ## Template for future decisions
 

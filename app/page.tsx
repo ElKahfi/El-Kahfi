@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Navigation />
       <main id="main" tabIndex={-1}>
-        <div id="top" className="curtain-slot" style={{ zIndex: 1 }}><Hero /></div>
+        <div id="top" className="curtain-slot" style={{ zIndex: 1 }}><div className="curtain-surface"><Hero /></div></div>
         {projects.map((project, index) => (
           <div
             key={project.slug}
@@ -22,7 +22,7 @@ export default function Home() {
           >
             <span id={`project-0${index + 1}`} className="anchor-alias" aria-hidden="true" />
             {index === 0 && <span id="sentri" className="anchor-alias" aria-hidden="true" />}
-            <ProjectPanel project={project} />
+            <div className="curtain-surface"><ProjectPanel project={project} /></div>
           </div>
         ))}
       </main>

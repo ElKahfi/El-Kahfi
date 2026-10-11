@@ -88,6 +88,19 @@ DEC-009 supersedes the placeholder-content choice. DEC-010 records media playbac
 
 DEC-011 records the motion choices. Validation results and remaining physical-device/performance limits are recorded in CHANGELOG.md.
 
+## Completed — spring smoothing and slower artwork, 2026-10-11
+
+- [x] Smooth stepped wheel input with a critically damped visual follower while keeping native scroll authoritative.
+- [x] Preserve stationary outgoing panels and exact start/midpoint/end curtain geometry in both directions.
+- [x] Make project images travel 25% of panel distance, composing with existing inverse pointer movement and 2% hover scale.
+- [x] Keep controls independent of artwork transforms and bypass wheel smoothing for navigation.
+- [x] Stop settled animation frames, remove offscreen promotion, and clean up on route/preference changes.
+- [x] Preserve static touch/reduced-motion fallbacks, content, routes, and the Sentri video.
+- [x] Complete frame-sampled wheel/fine-input tests, regression suite, lint, TypeScript, and build.
+  - Verification: 48 applicable browser checks verified across the full run and a corrected scrollbar-test rerun; 39 profile-inapplicable checks skipped. Lint, TypeScript, and production build passed.
+
+DEC-012 supersedes the directly scroll-bound curtain edge and 48px artwork reveal in DEC-011. Physical mouse/trackpad feel and Safari/Firefox remain handoff checks.
+
 ## Awaiting owner content
 
 - [ ] Confirm years for Communimate and Mojo, and personal roles/tools for all three projects.

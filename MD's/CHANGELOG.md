@@ -12,6 +12,33 @@ Record completed changes made by the owner or on their behalf. Future work belon
 - Include an author/request/commit reference when known; do not invent one.
 - Note verification and remaining limits.
 
+## 2026-10-11 — Spring-smoothed curtains and slower project images
+
+Requested by the project owner and implemented by Codex from the supplied scrolling brief.
+
+### Changed
+
+- Separated native document anchors from fixed visual curtain surfaces. ScrollTrigger observes browser scroll while a critically damped frame loop smooths discrete wheel steps without preventing input or forcing full-slide jumps.
+- Selected mass 1, stiffness 900/damping 60 for larger wheel steps, and stiffness 3600/damping 120 for fine pixel input below 40px. Reset opposing velocity on reversal and clamp overshoot. Stop the follower within 0.1px/1px per second of its destination.
+- Replaced the former 48px artwork reveal with counter-translation: each image travels 25% of its panel's viewport distance and reaches its original framing at rest. Existing inverse pointer movement and 2% scale remain composed into one artwork transform; controls receive no artwork parallax.
+- Kept gentle snapping within 8% of boundaries, after 400ms, over 240–420ms. Keyboard, anchors, history, scrollbar interaction, and ordinary footer scrolling retain native destinations.
+- Limited transform promotion to visible layers and removed it from covered/future artwork. Preserved static touch and reduced-motion fallbacks, owner content, routes, and Sentri media.
+- Updated all five project documents and recorded DEC-012, superseding the earlier directly scroll-bound curtain edge and 48px reveal implementation.
+
+### Fixed
+
+- Classify passive wheel input in capture phase so the first step reaches the follower before ScrollTrigger's bubbling listener processes it.
+- Preserve smoothing when a wheel step crosses the final project boundary.
+- Use a local media-query lifecycle and GSAP context so enabling reduced motion mid-glide does not reset native scroll to the top. Reconcile initial hashes only once, preserving later scroll positions on preference changes.
+
+### Verification and limits
+
+- Added frame-sampled checks for 120px/450px wheel steps, rapid repeated input, direction reversal, fine 8px updates, settling time, slower image travel, keyboard interruption, final-panel release, live reduced-motion cleanup, and native scrollbar dragging.
+- Inspected curtain midpoints and full project framing in the local browser. Physical mouse/trackpad feel, physical phones, Safari/Firefox, and production performance measurements remain unverified; emulated inputs are not hardware validation.
+- Lint, TypeScript, and production build passed. All home/project/legacy routes were generated successfully.
+- Verified 48 applicable browser checks across the complete run and a focused rerun; 39 checks were skipped for profiles where they do not apply. The complete run passed 47 checks. The remaining scrollbar check captured an intermediate browser drag position; after waiting for the final native drag event, it passed three consecutive runs without application changes.
+- Frame samples confirmed continuous, monotonic wheel following, no overshoot, less than 450ms settling for tested 120px/450px steps and reversal, and less than 250ms settling after tested fine pixel input. Image travel measured between 20% and 30% of panel travel (configured at 25%). These are local automated observations, not physical-device or production performance guarantees.
+
 ## 2026-10-10 — Archived unused files
 
 Requested by the project owner and organized by Codex.

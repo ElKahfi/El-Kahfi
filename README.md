@@ -10,7 +10,7 @@ A responsive Next.js portfolio with the original dark city illustration and the 
 
 Scrolling raises each incoming project panel over a stationary previous section, like a curtain. The sequence presents Sentri, Communimate, and Mojo through their supplied visuals, reverses on upward scrolling, and gently settles only very close to section boundaries on desktop. Hover previews provide context and links open individual project pages.
 
-On a fine-pointer device, the active hero/artwork grows by up to 2%. The hero moves gently toward the cursor; project artwork moves slightly in the opposite direction. Project images reveal with a short scroll-linked catch-up inside each curtain, adding depth while the panel edge remains tied to native scrolling. Touch devices use static artwork and ordinary scrolling.
+On a fine-pointer device, the active hero/artwork grows by up to 2%. The hero moves gently toward the cursor; project artwork moves slightly in the opposite direction. A critically damped visual follower smooths stepped wheel input while native scrolling retains control. Images travel 25% of the curtain distance and settle into their original framing; fine pixel input uses a faster response to stay responsive. Touch devices use static artwork and ordinary scrolling.
 
 The original static prototype and its source assets are grouped under `archive/legacy-static-site/`. The superseded SVG project covers are in `archive/unused-project-covers/`. These files remain historical references; the Next.js app is the active website.
 
@@ -39,9 +39,11 @@ There are no environment variables, accounts, backend services, or external font
 - Minimal responsive city hero, locally illuminated typography, and a compact navigation menu supporting hover, keyboard, click, and tap.
 - Three image-led panels and visual-first detail pages at `/projects/sentri`, `/projects/communimate`, and `/projects/mojo`. The old numbered URLs redirect to these pages.
 - Cursor previews that stay within the viewport and never intercept clicks. Sentri includes an eight-second silent recording clip with a poster fallback; reduced motion uses the poster only.
-- Native scroll input with GSAP-pinned curtain transitions and gentle settling near panel boundaries on desktop.
+- Native scroll input with ScrollTrigger-driven visual curtains, short spring smoothing, and gentle settling near panel boundaries on desktop.
 - Directly visible summaries and links on touch/small screens, a static touch light, and keyboard focus/skip navigation. Touch and reduced motion use an unpinned layout with no parallax or animated scaling. Short landscape viewports also use unpinned flow.
 - Project-specific return links, next-project navigation, and a missing-page view.
+
+The visual spring uses mass 1, stiffness 900, and damping 60 (critical damping). Fine pixel input below 40px uses stiffness 3600 and damping 120; this is input-size tuning, not device detection. Near-boundary snapping waits 400ms and lasts 240–420ms within an 8% boundary region. Keyboard, anchor, and scrollbar navigation bypass the wheel follower. Touch and reduced motion remain static. Physical mouse/trackpad feel and Safari/Firefox still need device testing.
 
 ## Project content
 
@@ -66,7 +68,7 @@ npm run build
 npm run test:e2e
 ```
 
-The browser suite uses installed Google Chrome (`channel: chrome`) and covers desktop, emulated mobile, and reduced motion. It reuses the server on port 3000 or starts one. Install Chrome if it is unavailable. Test artifacts are written to ignored `test-results/`.
+The browser suite uses installed Google Chrome (`channel: chrome`) and covers desktop, emulated mobile, and reduced motion. It reuses the server on port 3000 or starts one. Install Chrome if it is unavailable. Test artifacts are written to ignored `test-results/`. The motion suite samples actual panel/image positions under stepped and fine wheel input and enables native scrollbars for its drag check. Latest verification: lint, TypeScript, and build passed; 48 applicable browser checks verified across the full run and the corrected scrollbar-test rerun. See CHANGELOG.md for the exact results and remaining device limits.
 
 ## Project documents
 
