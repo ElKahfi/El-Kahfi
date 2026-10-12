@@ -11,13 +11,15 @@ The active site uses Next.js 16.4, React 19.3, TypeScript, CSS, and GSAP 3.15 Sc
 ```text
 app/layout.tsx — metadata, global CSS, skip link
 ├── app/page.tsx — home (server-rendered composition)
-│   ├── Navigation → hidden menu: #top, #work, #about
+│   ├── Navigation → hidden menu: #top, #work, /about
 │   ├── curtain-slot #top → Hero → city + shared text spotlight
 │   ├── curtain-slot × 3 → data/projects.ts → ProjectPanel × 3
 │   ├── ProjectPreview → hover summary → PreviewMedia → image/video
 │   ├── ScrollExperience → GSAP effects on the panels
 │   ├── VisualMotion → eased pointer translation and scale variables
-│   └── Footer → about text and back-to-top link
+│   ├── About → description, skills, contacts
+│   └── Footer → branding and back-to-top link
+├── components/About.tsx — homepage owner description, grouped skills, contact links
 ├── app/projects/[slug]/page.tsx
 │   └── data/projects.ts → detail content, cover, next/return links
 └── app/not-found.tsx — unknown route/project
@@ -93,7 +95,7 @@ Touch/small-screen layouts show summaries directly. Touch has no pinning, reveal
 
 ## Compact navigation
 
-Navigation sits above all curtain layers. Its stationary top-center trigger exposes a dark panel below it with Intro, Work, and About links. The trigger and links share a contiguous pointer region. Hover opening is restricted to fine-pointer devices, avoiding synthetic mouse events reopening the menu after a touch toggle. Activation keeps the menu open, even if hover already revealed it; a second activation closes it. Keyboard focus opens the menu; Escape closes it and returns focus to the trigger. Selection closes it, and outside pointer presses dismiss it. Closed navigation uses both `hidden` and `inert`, keeping its links out of the tab order. Detail pages use home-page hash destinations.
+Navigation sits above all curtain layers. Its stationary top-center trigger exposes a dark panel below it with Intro, Work, and About links. The trigger and links share a contiguous pointer region. Hover opening is restricted to fine-pointer devices, avoiding synthetic mouse events reopening the menu after a touch toggle. Activation keeps the menu open, even if hover already revealed it; a second activation closes it. Keyboard focus opens the menu; Escape closes it and returns focus to the trigger. Selection closes it, and outside pointer presses dismiss it. Closed navigation uses both `hidden` and `inert`, keeping its links out of the tab order. Detail pages use home-page hashes; the homepage uses local anchors for all three menu links.
 
 ## Media and performance
 
@@ -112,3 +114,11 @@ Next.js generates `AGENTS.md` with version-specific framework guidance. The comp
 ## Remaining limits
 
 Years for Communimate/Mojo, personal roles, tools, verified outcomes, and final case-study copy remain pending. Chrome desktop and emulated mobile checks do not substitute for physical phones or Safari/Firefox before publication. Production performance scores have not been measured. The earlier installation audit reported a development-only lint dependency chain involving `braces`; it has not been rerun for this content refinement. No framework downgrade was applied to work around that advisory.
+
+## About Me section
+
+`components/About.tsx` is a server component inside the home main landmark with an About Me h2, Skills and Contact h2 headings, skill-category h3 headings, semantic lists, and a contact definition list. Owner-confirmed content is maintained directly in this component: Development; Data and Infrastructure; Design and Tools. Contact links use `tel:08151610212`, the exact supplied email, and the supplied LinkedIn/GitHub URLs. No proficiency or experience claims are inferred.
+
+Scoped `.about-*` CSS reuses existing palette, typography, gutters, and focus styles. Columns collapse on smaller viewports. The shared navigation supports keyboard and touch. About remains outside the curtain slots and receives no motion enhancement. Its `#about` anchor is the navigation destination. `tests/about.spec.ts` covers content, contact destinations, overflow, keyboard focus, and return-to-work behavior in all applicable profiles. Project years, roles/tools, outcomes, and case-study copy remain the outstanding content requests.
+
+About placement correction (2026-10-12): the full About Me content replaces the former Systems/Connections/Possibilities section after Mojo on the homepage. Navigation scrolls to `#about` (or `/#about` from detail routes). `components/About.tsx` renders the content inside the home main landmark in ordinary flow, without parallax. The footer contains only branding and Back to top. `/about` redirects to `/#about` for compatibility; there is no separate About page.

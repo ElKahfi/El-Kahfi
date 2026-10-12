@@ -158,6 +158,16 @@ These describe the original HTML prototype, retained for reference. They are not
 - **Alternatives considered:** Long CSS transitions, a second scrub lag, wheel interception, forced slide advancement, and another scrolling library would add delay or competing controllers. No dependencies were added.
 - **Consequences:** Typical wheel catch-up targets 200–450ms without bounce. Small updates respond faster; this is not hardware detection. Navigation bypasses wheel smoothing, and snapping remains confined to 8% of a boundary after 400ms, lasting 240–420ms. Touch/reduced motion use static flow. Surface movement is only for curtain coverage; controls receive no artwork parallax. Fixed layers, focus, restoration, reversal, and live preference cleanup need regression coverage. Physical input feel and Safari/Firefox remain unverified.
 
+## DEC-013 — Dedicated static About Me page
+
+- **Date:** 2026-10-12
+- **Status:** Accepted — implemented
+- **Decision maker:** Project owner requested the page and supplied its content.
+- **Decision:** Add `/about` using existing monochrome styles and shared navigation. Present the lightly edited description, three prescribed skill categories, and exact supplied contact destinations. Preserve the home footer anchor and add a link to the page.
+- **Rationale:** A dedicated route makes this information readable and directly addressable without adding content to animated project panels.
+- **Alternatives considered:** Expanding the homepage footer would crowd the existing portfolio sequence. New visuals or motion would exceed the requested scope.
+- **Consequences:** About is static, responsive, and keyboard accessible. Unknown project metadata remains omitted; no further biography is required for this request.
+
 ## Template for future decisions
 
 ### DEC-NNN — Short decision title
@@ -171,3 +181,11 @@ These describe the original HTML prototype, retained for reference. They are not
 - **Alternatives considered:** Other options and why they were not selected
 - **Consequences:** Benefits, tradeoffs, and follow-up obligations
 - **References:** Related request, roadmap item, change, or superseding decision
+
+## DEC-014 — Inline About Me supersedes DEC-013
+
+- **Date:** 2026-10-12
+- **Status:** Accepted; supersedes the separate-page placement in DEC-013.
+- **Decision:** At the owner’s correction, replace the existing final homepage section with the full About content and use anchor navigation. Keep `/about` only as a redirect to `/#about`.
+- **Rationale:** About belongs in the continuous portfolio sequence. Ordinary flow allows all skills and contacts to remain reachable on short/mobile screens without new effects.
+- **Consequences:** Owner content and contact destinations are unchanged; the former promotional heading is removed.

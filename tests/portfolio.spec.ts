@@ -92,7 +92,7 @@ test("menu opens by hover or tap, closes after selection, and supports keyboard 
   await page.getByRole("link", { name: "About", exact: true }).click();
   await expect(menu).toBeHidden();
   await expect(page).toHaveURL(/#about$/);
-  await expect(page.locator("#about h2")).toBeInViewport();
+  await expect(page.getByRole("heading", { name: "About Me", exact: true })).toBeInViewport();
 });
 
 test("each curtain covers a stationary panel at start, midpoint and end, in both directions", async ({ page }, testInfo) => {

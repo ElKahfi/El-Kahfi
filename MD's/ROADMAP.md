@@ -101,14 +101,20 @@ DEC-011 records the motion choices. Validation results and remaining physical-de
 
 DEC-012 supersedes the directly scroll-bound curtain edge and 48px artwork reveal in DEC-011. Physical mouse/trackpad feel and Safari/Firefox remain handoff checks.
 
+## Completed — About Me, 2026-10-12
+
+- [x] Add a static, responsive `/#about` page in the existing monochrome identity.
+- [x] Group skills into Development, Data and Infrastructure, and Design and Tools.
+- [x] Use only the supplied description, phone, email, LinkedIn, and GitHub information.
+- [x] Connect shared navigation and the homepage footer while preserving portfolio effects.
+
 ## Awaiting owner content
 
 - [ ] Confirm years for Communimate and Mojo, and personal roles/tools for all three projects.
   - Completion: only confirmed values replace the currently empty fields.
 - [ ] Supply final case-study copy, including any verified metrics, outcomes, or research the owner wishes to publish.
   - Completion: supporting copy for Sentri, Communimate, and Mojo is approved without inferring achievements from screenshots.
-- [ ] Add biography or contact information if desired.
-  - Completion: use owner-provided details and an agreed destination for contact links.
+- [x] Publish the confirmed owner description, categorized skills, and supplied contact links at `/#about`.
 
 The portfolio now uses real owner-supplied names, descriptions, and media. Missing metadata does not block reviewing the experience and is omitted from the interface.
 
@@ -120,3 +126,5 @@ The portfolio now uses real owner-supplied names, descriptions, and media. Missi
 - Public deployment, domain setup, and a hosting provider choice.
 
 Before publication, check physical touch devices and Safari/Firefox, confirm final content, and review performance on the chosen host. These checks do not authorize publication.
+
+About placement correction (2026-10-12): the full About Me content replaces the former Systems/Connections/Possibilities section after Mojo on the homepage. Navigation scrolls to `#about` (or `/#about` from detail routes). `components/About.tsx` renders the content inside the home main landmark in ordinary flow, without parallax. The footer contains only branding and Back to top. `/about` redirects to `/#about` for compatibility; there is no separate About page.

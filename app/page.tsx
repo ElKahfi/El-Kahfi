@@ -4,6 +4,7 @@ import { ProjectPanel } from "@/components/ProjectPanel";
 import { ProjectPreview } from "@/components/ProjectPreview";
 import { ScrollExperience } from "@/components/ScrollExperience";
 import { VisualMotion } from "@/components/VisualMotion";
+import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { projects } from "@/data/projects";
 
@@ -25,6 +26,7 @@ export default function Home() {
             <div className="curtain-surface"><ProjectPanel project={project} /></div>
           </div>
         ))}
+        <About />
       </main>
       <Footer />
       <ProjectPreview projects={projects} />

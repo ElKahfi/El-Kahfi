@@ -12,6 +12,24 @@ Record completed changes made by the owner or on their behalf. Future work belon
 - Include an author/request/commit reference when known; do not invent one.
 - Note verification and remaining limits.
 
+## 2026-10-12 — About placement correction
+
+- Replaced the former homepage closing section with the full About Me description, skills, and contacts.
+- About navigation now scrolls to the homepage anchor, including from project detail pages. The previous `/about` URL redirects there.
+- Preserved ordinary flow after the last curtain, static About content, responsive layout, and the minimal footer. This supersedes the separate-page placement below.
+- Validation: lint, TypeScript, and production build passed. Browser run: 41 passed; the anchor-focused keyboard test was corrected and passed in both keyboard profiles. A mobile test teardown encountered a missing trace file during overlapping test runs; no application assertion failed in that case. The isolated route-test rerun passed on desktop and skipped the two inapplicable profiles cleanly.
+
+## 2026-10-12 — Dedicated About Me page
+
+Requested by the owner and implemented by Codex.
+
+- Added `/about` with the lightly edited owner description and the prescribed Development, Data and Infrastructure, and Design and Tools skill categories.
+- Added functional phone, email, LinkedIn, and GitHub links using the supplied details. No biography, proficiency, or achievement claims were invented.
+- Connected the shared About menu and homepage footer to the page; kept the legacy footer anchor and existing project/motion behavior.
+- Reused the monochrome palette, serif headings, spacing, focus outlines, and compact navigation. Added responsive static layout without new animation or dependencies.
+- Updated all five project documents in their existing locations. Project years, roles/tools, verified outcomes, and final case-study copy still require input; the requested About content is confirmed.
+- Verification: lint, TypeScript, and production build passed. Full Chrome browser suite: **53 passed, 40 profile-inapplicable tests skipped**. Desktop/mobile screenshots visually reviewed; keyboard access, contact destinations, reduced motion, return navigation, and existing curtains/projects passed. Contact URL schemes were verified without initiating calls or sending email. Physical devices and Safari/Firefox remain untested.
+
 ## 2026-10-11 — Spring-smoothed curtains and slower project images
 
 Requested by the project owner and implemented by Codex from the supplied scrolling brief.
