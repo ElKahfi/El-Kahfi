@@ -20,8 +20,6 @@ export function ProjectPreview({ projects }: { projects: Project[] }) {
     let targetX = 0;
     let targetY = 0;
     let pointer: { x: number; y: number } | null = null;
-    let settleTimer = 0;
-    let scrolling = false;
     const draw = () => {
       const ease = reducedMotion.matches ? 1 : 0.35;
       currentX += (targetX - currentX) * ease;
@@ -37,7 +35,7 @@ export function ProjectPreview({ projects }: { projects: Project[] }) {
       frame = 0;
     };
     const update = () => {
-      if (!finePointer.matches || !pointer || scrolling) return hide();
+      if (!finePointer.matches || !pointer) return hide();
       const panel = document.elementFromPoint(pointer.x, pointer.y)?.closest<HTMLElement>("[data-project]");
       const project = projects.find((item) => item.slug === panel?.dataset.project);
       if (!project) return hide();
@@ -59,20 +57,12 @@ export function ProjectPreview({ projects }: { projects: Project[] }) {
       pointer = { x: event.clientX, y: event.clientY };
       update();
     };
-    const scroll = () => {
-      scrolling = true;
-      hide();
-      clearTimeout(settleTimer);
-      // Wait beyond the snap delay, and restart while the visual spring moves.
-      settleTimer = window.setTimeout(() => { scrolling = false; update(); }, 500);
-    };
     const keydown = (event: KeyboardEvent) => { if (event.key === "Tab" || event.key === "Escape") dismiss(); };
     window.addEventListener("pointermove", move);
-    window.addEventListener("scroll", scroll, { passive: true });
-    window.addEventListener("wheel", scroll, { passive: true });
-    window.addEventListener("curtainprogress", scroll);
-    window.addEventListener("curtainsettled", scroll);
-    window.addEventListener("resize", scroll);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("curtainprogress", update);
+    window.addEventListener("curtainsettled", update);
+    window.addEventListener("resize", update);
     window.addEventListener("blur", dismiss);
     window.addEventListener("keydown", keydown);
     document.documentElement.addEventListener("pointerleave", dismiss);
@@ -80,13 +70,11 @@ export function ProjectPreview({ projects }: { projects: Project[] }) {
     reducedMotion.addEventListener("change", hide);
     return () => {
       cancelAnimationFrame(frame);
-      clearTimeout(settleTimer);
       window.removeEventListener("pointermove", move);
-      window.removeEventListener("scroll", scroll);
-      window.removeEventListener("wheel", scroll);
-      window.removeEventListener("curtainprogress", scroll);
-      window.removeEventListener("curtainsettled", scroll);
-      window.removeEventListener("resize", scroll);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("curtainprogress", update);
+      window.removeEventListener("curtainsettled", update);
+      window.removeEventListener("resize", update);
       window.removeEventListener("blur", dismiss);
       window.removeEventListener("keydown", keydown);
       document.documentElement.removeEventListener("pointerleave", dismiss);

@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-13 — Monochrome surrounds for SENTRI and Communimate
+
+- Used the existing portfolio ink/paper palette for both homepage slides, replacing cream backgrounds and removing their artwork drop shadows.
+- Matched screenshot spacing on desktop and mobile while retaining contain sizing, original image colors, motion, previews, and links.
+
+## 2026-10-13 — SENTRI homepage Dispatch cover
+
+- Replaced the homepage mascot artwork with the supplied Dispatch console screenshot, using the shared interface presentation and meaningful alternative text. Hover media and detail content remain intact.
+
+## 2026-10-13 — Symmetrical SENTRI information layout
+
+- Centered the project overview above the case-study information, with balanced role/tools groups and thin bottom dividers.
+- Presented Key capabilities and My role in bordered, equally sized desktop cards; stacked the cards on tablet and mobile.
+- Retained all existing confirmed copy and scoped styling to SENTRI.
+- Verified centered metadata, card alignment, mobile stacking, and no horizontal overflow at 1440, 768, and 390 pixels. All three SENTRI browser checks, lint, TypeScript, and production build passed.
+
 ## Purpose of this file
 
 Record completed changes made by the owner or on their behalf. Future work belongs in [ROADMAP.md](ROADMAP.md); technical rationale belongs in [Decisions.md](Decisions.md).
@@ -19,6 +35,21 @@ Record completed changes made by the owner or on their behalf. Future work belon
 - Added optional typed case-study and image-caption fields. SENTRI leads with its name/year and overview; Communimate/Mojo retain their layout. Existing cover, video, navigation, About, and scrolling logic remain intact.
 - Lint, TypeScript, and production build passed. Relevant Chrome browser suite: 45 passed, 15 profile-inapplicable checks skipped, covering desktop, mobile, reduced motion, contact/About, routes, captions, image loading, and return positioning. Desktop case-study screenshot reviewed.
 - Browser checks exposed an existing inactive-snap interruption error. Guarded the optional tween kill method without changing motion parameters; added a browser-error assertion to the existing snapping check. Its focused rerun passed on desktop and reduced motion (two passed, one inapplicable skip). Lint, TypeScript, and build passed again after the guard.
+
+## 2026-10-13 — Real-time previews, project rotators, and repositories
+
+### Rotator layout correction
+
+- Moved the line indicator and controls above the image, centered the description beneath it, removed full-size links, and placed Technical Architecture last in SENTRI.
+- Updated layout/order browser assertions across desktop, mobile, and reduced motion.
+- Verification: all six relevant browser checks passed; lint, TypeScript, and production build passed.
+
+- Removed the overview's quiet timer and scrolling hide behavior. Active project context now updates directly from native scroll and curtain movement beneath the remembered cursor. Same-project media stays mounted; dismissal and lifecycle cleanup remain intact.
+- Added a typed slide adapter and client rotator showing one related image/text pair at a time. SENTRI has five slides; Communimate/Mojo use two text sections with their existing single image.
+- Added wrapping Previous/Next controls, horizontal drag/swipe, scoped arrow keys, accessible slide counts, and grey/white line indicators. Slide changes are immediate, including reduced motion.
+- Added the supplied SENTRI and Communimate GitHub links with safe new-tab attributes; omitted a Mojo repository.
+- Verification: lint, TypeScript, and build passed; the relevant Chrome suite passed 42 checks with 15 profile-inapplicable skips, including desktop drag, actual touch swipe, keyboard, indicator state, repository attributes, preserved routes, media, and reduced motion.
+- A stricter two-rendered-frame stationary-preview assertion passed on desktop and reduced motion (touch skipped). Rotator screenshots were reviewed on desktop/mobile; all three rotator profiles passed again during screenshot capture.
 
 ## 2026-10-13 — Stationary hover and stronger project enlargement
 

@@ -47,6 +47,10 @@ The visual spring uses mass 1, stiffness 900, and damping 60 (critical damping).
 
 ## About Me
 
+Rotator layout: the grey/white line indicator and navigation sit above the image; the related heading and description are centered below it. Full-size image links are removed. SENTRI's final slide is Technical Architecture, following Dispatch, Protocol, Admin Panel, and Deployment Setup.
+
+Project details use a local content rotator: one image and its related text at a time, Previous/Next buttons, horizontal drag/touch swipe, arrow keys, and a grey track with a white active segment. SENTRI has five slides; Communimate and Mojo each reuse their one supplied visual for two existing text sections. Add content through the typed records in `data/projects.ts` and `getProjectSlides`. Confirmed GitHub links are available for SENTRI and Communimate; Mojo has no supplied repository. Homepage previews resolve immediately during scroll and curtain movement from the remembered cursor, without an idle delay.
+
 The static `/#about` section contains the owner-approved description, Development skills (Python, JavaScript, TypeScript, React, HTML, CSS), Data and Infrastructure (SQL, AWS/Cloud, Docker), and Design and Tools (Figma, GitHub, VS Code). Phone, email, LinkedIn, and GitHub links use the supplied details. Edit `components/About.tsx` to maintain this content. The shared About menu item scrolls to this section. No additional biography is required for this scope; project metadata and case-study content remain pending.
 
 ## Project content
@@ -59,7 +63,7 @@ Edit `data/projects.ts` to maintain content. Each entry contains a slug, title, 
 | Communimate | A communication-improvement product that helps people identify speech weaknesses and discover communication methods that suit them best. |
 | Mojo | An UTBK training platform that generates unlimited UTBK-style questions and guides practice through a skill-tree-based learning journey. |
 
-These are owner-supplied projects, not placeholders. SENTRI has a confirmed year (2026), Team Leader role, and PostgreSQL, Docker, AWS EC2, and Coolify tools. Its case study summarizes capabilities and contributions and presents five captioned images: Dispatch, architecture, Gmail Protocol, employee administration, and company setup. Full-size image links support diagram reading. The mascot and hover video remain unchanged. Communimate and Mojo metadata remains unconfirmed. Screenshot statistics are not claimed as measured outcomes.
+These are owner-supplied projects, not placeholders. SENTRI has a confirmed year (2026), Team Leader role, and PostgreSQL, Docker, AWS EC2, and Coolify tools. Its case study summarizes capabilities and contributions and presents five captioned images, with Technical architecture last. Its homepage artwork uses the Dispatch screenshot in the same interface presentation as the other projects; the hover video remains unchanged. Full-size image links have been removed. Communimate and Mojo metadata remains unconfirmed. Screenshot statistics are not claimed as measured outcomes.
 
 Still needed: Communimate and Mojo years, roles, tools, and final case-study copy; any verified metrics/outcomes the owner wishes to publish. SENTRI content, biography, and contact details are owner-confirmed. No clients, qualifications, or results have been invented.
 

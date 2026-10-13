@@ -18,7 +18,7 @@ test("Sentri preview plays a silent short clip and reduced motion keeps its post
     expect(await video.evaluate((el) => (el as HTMLVideoElement).muted)).toBe(true);
     expect(await video.evaluate((el) => (el as HTMLVideoElement).duration)).toBeLessThanOrEqual(8.1);
     await page.screenshot({ path: testInfo.outputPath("sentri-video-preview.png") });
-    await page.mouse.wheel(0, 100);
+    await page.mouse.move(-10, -10);
     await expect(preview).not.toHaveClass(/is-visible/);
     await expect(video).toHaveCount(0);
   }

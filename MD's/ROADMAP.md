@@ -119,6 +119,10 @@ DEC-012 supersedes the directly scroll-bound curtain edge and 48px artwork revea
 
 ## Awaiting owner content
 
+Completed rotator layout correction: top indicator, centered description beneath the image, architecture last, and removal of full-size links.
+
+Completed 2026-10-13: remove preview idle delay; add project-local image/text rotators, line indicators, drag/swipe and keyboard controls; add supplied SENTRI and Communimate repositories. More unique Communimate/Mojo images and a Mojo repository may be supplied later; current content remains usable.
+
 Completed 2026-10-13: stationary-pointer previews resume after scrolling and curtain settling, project artwork enlarges by 4%, inactive artwork resets, and keyboard/exit dismissal remains persistent until pointer movement.
 
 - [ ] Confirm years and personal roles/tools for Communimate and Mojo.

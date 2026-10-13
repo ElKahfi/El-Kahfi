@@ -1,4 +1,5 @@
 export type ProjectImage = { src: string; alt: string; width: number; height: number; title?: string; caption?: string };
+export type ProjectSlide = { image: ProjectImage; heading: string; body: string };
 
 export type Project = {
   slug: string;
@@ -7,6 +8,7 @@ export type Project = {
   summary: string;
   role: string | null;
   tools: string[];
+  repository?: string;
   coverImage: string;
   coverAlt: string;
   presentation: "mascot" | "interface";
@@ -24,10 +26,11 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "sentri", title: "SENTRI", year: 2026,
+    repository: "https://github.com/ElKahfi/Sentricol",
     summary: "An AI-powered cybersecurity training platform where employees practice real workplace decisions, receive immediate feedback, and track their security development.",
-    role: "Team Leader", tools: ["PostgreSQL", "Docker", "AWS EC2", "Coolify"], isPlaceholder: false, theme: "light", presentation: "mascot",
-    coverImage: "/images/sentri-mascot.webp",
-    coverAlt: "Sentri's friendly pixel-art robot mascot in a green cape",
+    role: "Team Leader", tools: ["PostgreSQL", "Docker", "AWS EC2", "Coolify"], isPlaceholder: false, theme: "dark", presentation: "interface",
+    coverImage: "/images/sentri-dispatch.webp",
+    coverAlt: "SENTRI Dispatch training interface showing the workplace task queue, email investigation, and learner progress",
     previewImage: "/images/sentri-poster.webp",
     previewVideo: "/media/sentri-preview.mp4",
     gallery: [
@@ -58,8 +61,9 @@ export const projects: Project[] = [
   },
   {
     slug: "communimate", title: "Communimate", year: null,
+    repository: "https://github.com/ElKahfi/Communimate",
     summary: "A communication-improvement product that helps people identify speech weaknesses and discover communication methods that suit them best.",
-    role: null, tools: [], isPlaceholder: false, theme: "light", presentation: "interface",
+    role: null, tools: [], isPlaceholder: false, theme: "dark", presentation: "interface",
     coverImage: "/images/communimate.webp",
     coverAlt: "Communimate practice interface with an illustrated living room and choices for storytelling, presentation, conversation, and interview practice",
     previewImage: "/images/communimate.webp",
@@ -94,4 +98,18 @@ export const legacyProjectSlugs: Record<string, string> = {
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);
+}
+
+// Gallery captions define visual case-study slides. Projects with a single
+// supplied image reuse it across their existing narrative sections.
+export function getProjectSlides(project: Project): ProjectSlide[] {
+  if (project.gallery.every(image => image.title && image.caption)) {
+    const images = [...project.gallery].sort((a, b) => Number(a.title === "Technical architecture") - Number(b.title === "Technical architecture"));
+    return images.map(image => ({ image, heading: image.title!, body: image.caption! }));
+  }
+  return project.detailContent.map((section, index) => ({
+    image: project.gallery[Math.min(index, project.gallery.length - 1)],
+    heading: section.heading,
+    body: section.body,
+  }));
 }

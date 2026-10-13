@@ -8,11 +8,17 @@ test("stationary pointer discovers projects after scrolling and respects dismiss
   await expect(menu).toHaveAttribute("aria-expanded", "true");
   await menu.click();
   const preview = page.locator(".project-preview");
+  await page.mouse.move(800, 600);
+  const immediateTitle = await page.evaluate(async () => {
+    scrollTo({ top: 450, behavior: "instant" });
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    return document.querySelector(".project-preview h3")?.textContent;
+  });
+  expect(immediateTitle).toBe("SENTRI");
   await page.mouse.move(800, 400);
   for (const [y, title, id] of [[900, "SENTRI", "work"], [1800, "Communimate", "communimate"], [2700, "Mojo", "mojo"], [1800, "Communimate", "communimate"], [900, "SENTRI", "work"]] as const) {
     const previous = await page.evaluate(() => scrollY);
     await page.mouse.wheel(0, y - previous);
-    await expect(preview).not.toHaveClass(/is-visible/);
     await expect(preview).toHaveClass(/is-visible/);
     await expect(preview.locator("h3")).toHaveText(title);
     const art = page.locator(`#${id} .project-art`);

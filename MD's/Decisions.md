@@ -1,5 +1,13 @@
 # Technical Decisions
 
+## DEC-019 — Centered SENTRI overview and balanced case-study cards
+
+- **Date:** 2026-10-13
+- **Status:** Accepted at the owner's request.
+- **Decision:** Center SENTRI's role and tools above two equal-width, equal-height desktop cards for Key capabilities and My role. Underline both metadata groups with thin rules; stack cards on tablet and mobile, and metadata on narrow mobile screens.
+- **Rationale:** Give the information area symmetry and a clear hierarchy while retaining the confirmed content.
+- **Consequences:** Styling is scoped to SENTRI; project data, routes, rotator, and motion behavior remain intact.
+
 ## Purpose of this file
 
 Record technical decisions and why the project owner chose them. Preserve the context, alternatives, and consequences so future work does not repeat debates or replace an intentional choice without understanding it.
@@ -179,6 +187,22 @@ These describe the original HTML prototype, retained for reference. They are not
 - **Consequences:** Optional typed fields preserve the other projects' layout. No new animations or dependencies. Screenshot demo data is not presented as real usage or measured results. Unknown Communimate/Mojo metadata remains pending.
 
 ## Template for future decisions
+
+### DEC-018 — Center project visuals and finish with architecture
+
+- **Date:** 2026-10-13
+- **Status:** Accepted, per owner layout correction.
+- **Decision:** Put the indicator above the image, heading/description beneath and centered, and SENTRI Technical Architecture last. Remove full-size image links.
+- **Rationale:** The owner wants the visual to lead the page with its description at the bottom center, rather than a side column.
+- **Consequences:** Rotator interaction, data, repositories, and accessibility remain intact; supersedes the side-by-side caption and full-size-link presentation.
+
+### DEC-017 — Immediate hover ownership and local project rotators
+
+- **Date:** 2026-10-13
+- **Status:** Accepted; supersedes DEC-016's 500ms preview quiet timer.
+- **Decision:** Hit-test the remembered cursor during native/visual scrolling with no delay. Keep the preview present whenever the project is identifiable; replace media only when project ownership changes. Use local state for image/text rotation without route navigation.
+- **Rationale:** Immediate context is the owner's priority. Event-driven checks provide that response without an idle loop. A grey line with white active segment communicates progress with minimal UI.
+- **Consequences:** Dismissal persists until pointer movement. Rotators wrap, support drag/swipe and scoped arrow keys, and use immediate changes for all motion preferences. SENTRI retains five visuals; Communimate/Mojo reuse each existing image for their two narrative sections until more assets are supplied. Repository links are only the owner-confirmed SENTRI/Communimate URLs.
 
 ### DEC-016 — Resolve hover ownership after visual movement
 
