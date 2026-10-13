@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-13 — Expanded Communimate case study
+
+- Set the owner-supplied role to Independent Project and year to Ongoing.
+- Expanded the overview and two visual captions; added the problem, coaching principles, prototype capabilities, independent project scope, and next validation milestone.
+- Based content on the local Communimate project idea, README, architecture documentation, and active HTML interface. Identified sample feedback and progress as prototype behavior, and real recording, storage, speech analysis, and AI conversation as planned work.
+- Added optional narrative sections to case studies and support for the Ongoing year label. Listed HTML, CSS, and JavaScript from the active prototype.
+
 ## 2026-10-13 — Monochrome surrounds for SENTRI and Communimate
 
 - Used the existing portfolio ink/paper palette for both homepage slides, replacing cream backgrounds and removing their artwork drop shadows.

@@ -4,7 +4,7 @@ export type ProjectSlide = { image: ProjectImage; heading: string; body: string 
 export type Project = {
   slug: string;
   title: string;
-  year: number | null;
+  year: number | "Ongoing" | null;
   summary: string;
   role: string | null;
   tools: string[];
@@ -16,7 +16,7 @@ export type Project = {
   previewVideo?: string;
   gallery: ProjectImage[];
   detailContent: { heading: string; body: string }[];
-  caseStudy?: { capabilities: string[]; contributions: string[] };
+  caseStudy?: { capabilities: string[]; contributions: string[]; sections?: { heading: string; body: string }[] };
   isPlaceholder: boolean;
   theme: "light" | "dark";
 };
@@ -60,10 +60,10 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "communimate", title: "Communimate", year: null,
+    slug: "communimate", title: "Communimate", year: "Ongoing",
     repository: "https://github.com/ElKahfi/Communimate",
-    summary: "A communication-improvement product that helps people identify speech weaknesses and discover communication methods that suit them best.",
-    role: null, tools: [], isPlaceholder: false, theme: "dark", presentation: "interface",
+    summary: "An ongoing communication practice companion exploring how personalized coaching can help people speak more clearly, confidently, and in their own style.",
+    role: "Independent Project", tools: ["HTML", "CSS", "JavaScript"], isPlaceholder: false, theme: "dark", presentation: "interface",
     coverImage: "/images/communimate.webp",
     coverAlt: "Communimate practice interface with an illustrated living room and choices for storytelling, presentation, conversation, and interview practice",
     previewImage: "/images/communimate.webp",
@@ -71,9 +71,27 @@ export const projects: Project[] = [
       { src: "/images/communimate.webp", alt: "Communimate's practice screen showing setting, practice style, and recording choices", width: 1732, height: 1004 },
     ],
     detailContent: [
-      { heading: "Find a way of speaking that fits", body: "Communimate is designed to help people identify weaknesses in their speech and explore communication methods that suit them. The product centers on practice and individual communication needs." },
-      { heading: "Choose the setting for practice", body: "The supplied interface offers storytelling, presentation, conversation, and interview settings. It also shows choices for one-way or conversational practice and whether to display the user's camera reflection." },
+      { heading: "A calmer place to practice", body: "Communimate explores a supportive alternative to practicing alone or relying on a single speaking score. Warm illustrated environments and gentle character animation make space for repeated practice, with the goal of helping people develop their own communication style." },
+      { heading: "Choose the setting for practice", body: "The interactive prototype offers Storytelling, Presentation, Conversation, and Interview environments. One-way or conversation style and reflection settings change the scene. A simulated recording timer leads into sample coaching moments, letting the practice-to-feedback journey be explored before real recording and AI analysis are built." },
     ],
+    caseStudy: {
+      sections: [
+        { heading: "From a score to a useful next step", body: "Students preparing presentations, job seekers rehearsing interviews, and professionals improving everyday conversations often lack regular access to a coach. Communimate’s product direction connects feedback to specific moments in a response: what happened, how it could affect the listener, and one practical adjustment to try. The intended loop is simple: choose a goal, practice, review a few meaningful moments, and retry." },
+        { heading: "Coaching that respects individual style", body: "The design prioritizes a few useful observations alongside strengths. Planned feedback considers the speaking situation, audience, and personal baseline rather than treating every accent or cultural difference as a mistake. A communicator persona is intended to reflect patterns that can evolve with practice. Pixel characters, a recurring lip motif, and calm environments give the experience a friendly identity without streak pressure or punitive scoring." },
+        { heading: "Current stage and next milestone", body: "Communimate is currently an interactive interface prototype. Its timer, coaching moments, persona, and session history use sample data; it does not yet capture audio or video, analyze speech, or save progress. The next validation goal is a real 60–120 second one-way response, private recording storage, and three relevant coaching moments that help the user retry. Accounts, playback, timestamped evaluation, history, and deletion controls belong to that planned first version; live AI conversation remains a later direction." },
+      ],
+      capabilities: [
+        "Four switchable practice environments with category-specific prompts and illustrated scenes.",
+        "Session setup for interaction style and showing or hiding the illustrated reflection.",
+        "A simulated start/finish recording flow that opens three sample coaching moments with observations, listener effects, and suggestions.",
+        "A sample progress library with category filters, topic folders, repeated attempts, growth highlights, and a communicator persona.",
+      ],
+      contributions: [
+        "Developing the product concept and practice–feedback–retry journey as an independent project.",
+        "Exploring the visual identity, practice environments, contextual feedback, and progress experience through an interactive browser prototype.",
+        "Defining the first-version scope around one-way speaking, actionable coaching, private recordings, and user control over stored sessions.",
+      ],
+    },
   },
   {
     slug: "mojo", title: "Mojo", year: null,

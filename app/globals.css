@@ -229,6 +229,7 @@ dd { font-size: 13px; line-height: 1.6; margin: 8px 0 0; }
   .detail-gallery figure { padding: 24px; }
   .detail-heading { padding-top: 15px; padding-bottom: 40px; }
   .detail-heading-row { margin-top: 40px; display: block; }
+  .detail-page--communimate .detail-heading h1 { font-size: clamp(40px, 12vw, 65px); }
   .detail-heading h1 { font-size: 72px; }
   .detail-heading .placeholder-label { margin-top: 25px; margin-bottom: 0; }
   .detail-heading > p { font-size: 14px; }

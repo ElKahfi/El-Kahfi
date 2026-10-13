@@ -46,6 +46,7 @@ export default async function ProjectPage({ params }: Props) {
             </dl>}
           </aside>
           <div className="detail-story">{project.caseStudy ? <>
+            {project.caseStudy.sections?.map((section) => <section key={section.heading}><h2>{section.heading}</h2><p>{section.body}</p></section>)}
             <section><h2>Key capabilities</h2><ul className="case-points">{project.caseStudy.capabilities.map((point) => <li key={point}>{point}</li>)}</ul></section>
             <section><h2>My role</h2><p>{project.role}</p><ul className="case-points">{project.caseStudy.contributions.map((point) => <li key={point}>{point}</li>)}</ul></section>
           </> : null}</div>
