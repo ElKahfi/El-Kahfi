@@ -1,4 +1,4 @@
-export type ProjectImage = { src: string; alt: string; width: number; height: number };
+export type ProjectImage = { src: string; alt: string; width: number; height: number; title?: string; caption?: string };
 
 export type Project = {
   slug: string;
@@ -14,6 +14,7 @@ export type Project = {
   previewVideo?: string;
   gallery: ProjectImage[];
   detailContent: { heading: string; body: string }[];
+  caseStudy?: { capabilities: string[]; contributions: string[] };
   isPlaceholder: boolean;
   theme: "light" | "dark";
 };
@@ -22,22 +23,38 @@ export type Project = {
 // establish measured outcomes, implementation tools, or individual responsibilities.
 export const projects: Project[] = [
   {
-    slug: "sentri", title: "Sentri", year: 2026,
-    summary: "A human-centric cybersecurity training service designed to help people recognize unsafe patterns and improve everyday security behavior.",
-    role: null, tools: [], isPlaceholder: false, theme: "light", presentation: "mascot",
+    slug: "sentri", title: "SENTRI", year: 2026,
+    summary: "An AI-powered cybersecurity training platform where employees practice real workplace decisions, receive immediate feedback, and track their security development.",
+    role: "Team Leader", tools: ["PostgreSQL", "Docker", "AWS EC2", "Coolify"], isPlaceholder: false, theme: "light", presentation: "mascot",
     coverImage: "/images/sentri-mascot.webp",
     coverAlt: "Sentri's friendly pixel-art robot mascot in a green cape",
     previewImage: "/images/sentri-poster.webp",
     previewVideo: "/media/sentri-preview.mp4",
     gallery: [
-      { src: "/images/sentri-console.webp", alt: "Sentri dispatch console with an email investigation queue, task details, and the mascot guide", width: 1628, height: 902 },
-      { src: "/images/sentri-mascot.webp", alt: "Sentri mascot waving, with cyan eyes, a shield emblem, and a green cape", width: 1144, height: 1375 },
+      { src: "/images/sentri-dispatch.webp", alt: "SENTRI Dispatch training console showing an email, password, and data task queue, investigation details, daily progress, and the mascot guide", width: 2170, height: 1196, title: "Dispatch — the core training experience", caption: "Dispatch is SENTRI’s core learning console. Employees investigate suspicious emails, review passwords, and classify sensitive data through workplace scenarios. Each decision receives feedback, and recorded results track their learning progress." },
+      { src: "/images/sentri-architecture.webp", alt: "SENTRI architecture linking admin, learner, and Gmail browsers to Deployment, Dispatch, and Protocol services, with PostgreSQL, Ollama, Google OAuth, and Gmail API connections", width: 2036, height: 990, title: "Technical architecture", caption: "Deployment manages company access, Dispatch delivers training, and Protocol reviews email risks. PostgreSQL stores records; Ollama supports AI workflows, while Google OAuth and the Gmail API connect Protocol to Gmail." },
+      { src: "/images/sentri-protocol.webp", alt: "SENTRI Protocol Gmail connection screen with Google sign-in and security-analysis setup", width: 2400, height: 1561, title: "Protocol — Gmail continuation training", caption: "Connect Gmail to retrieve and assess messages for potential security risks, extending security awareness into everyday email decisions." },
+      { src: "/images/sentri-admin.webp", alt: "SENTRI company control center showing employee records, invitation states, and tabs for training progress and Protocol alerts in a demo workspace", width: 2400, height: 1561, title: "Deployment — admin panel", caption: "Company and employee management brings registration, invitations, and training administration together. This screenshot shows a demo workspace with simulated invitations." },
+      { src: "/images/sentri-deployment.webp", alt: "SENTRI Deployment entry screen offering company registration and administrator login", width: 2400, height: 1561, title: "Deployment — company setup", caption: "The entry point for registering a company and administrator account, or returning to manage an existing company’s training." },
     ],
     detailContent: [
-      { heading: "Security starts with everyday behavior", body: "Sentri puts people at the center of cybersecurity training. Its aim is to help people notice unsafe patterns and build safer habits in everyday decisions." },
-      { heading: "A place to practice decisions", body: "The dispatch console presents a queue of tasks alongside the details needed to investigate them. The supplied interface shows email investigation, password review, and data classification as training areas." },
-      { heading: "A human presence in the interface", body: "The Sentri mascot accompanies the console experience. The friendly character and illustrated workspace give the training a recognizable visual identity." },
+      { heading: "Practical security awareness", body: "Interactive scenarios cover suspicious emails, password decisions, and sensitive-data classification. Each decision receives feedback, with results recorded to support ongoing learning." },
     ],
+    caseStudy: {
+      capabilities: [
+        "Dispatch: the core browser-based training console for email, password, and sensitive-data scenarios, with immediate feedback and learner progress tracking.",
+        "Company and employee management backed by persistent PostgreSQL records.",
+        "Dockerized services deployed on AWS EC2 through Coolify.",
+        "AI-assisted training and security analysis, including Protocol’s Gmail message-risk assessment.",
+      ],
+      contributions: [
+        "Designed the PostgreSQL model for companies, employees, training content, assignments, attempts, results, and progress.",
+        "Built the Docker setup, connected services to AWS EC2, and helped configure deployment through Coolify.",
+        "Contributed to the integration of Deployment, Dispatch, Protocol, the database, and infrastructure.",
+        "Coordinated development priorities with product goals and reviewed data flow, system behavior, and integration risks.",
+        "Supported AI integrations for model-based analysis and cybersecurity training.",
+      ],
+    },
   },
   {
     slug: "communimate", title: "Communimate", year: null,

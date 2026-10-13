@@ -55,17 +55,19 @@ export function VisualMotion() {
         if (!pointer) return;
         const screen = document.elementFromPoint(pointer.x, pointer.y)?.closest(".screen");
         const active = states.find((state) => state.screen === screen);
-        if (!active) return reset();
+        if (!active) {
+          states.forEach((state) => { state.targetX = 0; state.targetY = 0; state.targetScale = 1; });
+          schedule();
+          return;
+        }
         const bounds = active.screen.getBoundingClientRect();
         const x = Math.max(-1, Math.min(1, (pointer.x - bounds.left) / bounds.width * 2 - 1));
         const y = Math.max(-1, Math.min(1, (pointer.y - bounds.top) / bounds.height * 2 - 1));
         active.targetX = x * (active.hero ? 6 : -12);
         active.targetY = y * (active.hero ? 4 : -10);
-        active.targetScale = 1.02;
-        // Freeze covered artwork at its current pose so it does not drift behind
-        // the incoming curtain. Pointer exit returns all artwork gently to rest.
+        active.targetScale = active.hero ? 1.02 : 1.04;
         states.forEach((state) => {
-          if (state !== active) { state.targetX = state.x; state.targetY = state.y; state.targetScale = state.scale; }
+          if (state !== active) { state.targetX = 0; state.targetY = 0; state.targetScale = 1; }
         });
         schedule();
       };
@@ -78,6 +80,7 @@ export function VisualMotion() {
       window.addEventListener("pointermove", move, { passive: true });
       window.addEventListener("scroll", update, { passive: true });
       window.addEventListener("curtainsettled", update);
+      window.addEventListener("curtainprogress", update);
       window.addEventListener("resize", reset);
       window.addEventListener("blur", reset);
       window.addEventListener("keydown", keyboard);
@@ -89,6 +92,7 @@ export function VisualMotion() {
         window.removeEventListener("pointermove", move);
         window.removeEventListener("scroll", update);
         window.removeEventListener("curtainsettled", update);
+        window.removeEventListener("curtainprogress", update);
         window.removeEventListener("resize", reset);
         window.removeEventListener("blur", reset);
         window.removeEventListener("keydown", keyboard);

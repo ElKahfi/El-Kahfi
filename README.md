@@ -10,7 +10,7 @@ A responsive Next.js portfolio with the original dark city illustration and the 
 
 Scrolling raises each incoming project panel over a stationary previous section, like a curtain. The sequence presents Sentri, Communimate, and Mojo through their supplied visuals, reverses on upward scrolling, and gently settles only very close to section boundaries on desktop. Hover previews provide context and links open individual project pages.
 
-On a fine-pointer device, the active hero/artwork grows by up to 2%. The hero moves gently toward the cursor; project artwork moves slightly in the opposite direction. A critically damped visual follower smooths stepped wheel input while native scrolling retains control. Images travel 25% of the curtain distance and settle into their original framing; fine pixel input uses a faster response to stay responsive. Touch devices use static artwork and ordinary scrolling.
+On a fine-pointer device, the active hero grows by 2% and project artwork by 4%. The hero moves gently toward the cursor; project artwork moves slightly in the opposite direction. A critically damped visual follower smooths stepped wheel input while native scrolling retains control. Images travel 25% of the curtain distance and settle into their original framing; fine pixel input uses a faster response to stay responsive. Touch devices use static artwork and ordinary scrolling.
 
 The original static prototype and its source assets are grouped under `archive/legacy-static-site/`. The superseded SVG project covers are in `archive/unused-project-covers/`. These files remain historical references; the Next.js app is the active website.
 
@@ -59,9 +59,9 @@ Edit `data/projects.ts` to maintain content. Each entry contains a slug, title, 
 | Communimate | A communication-improvement product that helps people identify speech weaknesses and discover communication methods that suit them best. |
 | Mojo | An UTBK training platform that generates unlimited UTBK-style questions and guides practice through a skill-tree-based learning journey. |
 
-These are owner-supplied projects, not placeholders. Roles remain `null`, tools remain empty, and only Sentri has a confirmed year. Unknown fields are omitted from the interface. The descriptions state product intent and visible interface features; screenshot statistics are not claimed as measured outcomes. Keep slugs unique; next-project navigation comes from the shared data.
+These are owner-supplied projects, not placeholders. SENTRI has a confirmed year (2026), Team Leader role, and PostgreSQL, Docker, AWS EC2, and Coolify tools. Its case study summarizes capabilities and contributions and presents five captioned images: Dispatch, architecture, Gmail Protocol, employee administration, and company setup. Full-size image links support diagram reading. The mascot and hover video remain unchanged. Communimate and Mojo metadata remains unconfirmed. Screenshot statistics are not claimed as measured outcomes.
 
-Still needed: Communimate and Mojo years, roles and tools for all projects, any verified metrics/outcomes, final case-study copy. No clients, qualifications, or results have been invented. Biography and contact details are now owner-confirmed.
+Still needed: Communimate and Mojo years, roles, tools, and final case-study copy; any verified metrics/outcomes the owner wishes to publish. SENTRI content, biography, and contact details are owner-confirmed. No clients, qualifications, or results have been invented.
 
 ## Checks
 

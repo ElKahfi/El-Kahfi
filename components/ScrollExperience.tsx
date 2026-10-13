@@ -71,6 +71,7 @@ export function ScrollExperience() {
             // of the panel's viewport distance, then arrives at its original frame.
             artwork[index]?.style.setProperty("--reveal-y", `${-(1 - IMAGE_TRAVEL) * Math.min(height, incoming)}px`);
           });
+          window.dispatchEvent(new Event("curtainprogress"));
         };
         const cancel = () => {
           cancelAnimationFrame(frame);
@@ -149,12 +150,12 @@ export function ScrollExperience() {
           wheelUntil = performance.now() + 160;
           navigationUntil = 0;
           frequency = event.deltaMode === 0 && Math.abs(event.deltaY) < 40 ? FINE_FREQUENCY : WHEEL_FREQUENCY;
-          trigger.getTween(true)?.kill();
+          trigger.getTween(true)?.kill?.();
         };
         const suspend = () => {
           wheelUntil = 0;
           navigationUntil = performance.now() + 1200;
-          trigger.getTween(true)?.kill();
+          trigger.getTween(true)?.kill?.();
           sync();
         };
         const keyboard = (event: KeyboardEvent) => {

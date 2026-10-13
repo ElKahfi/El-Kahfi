@@ -4,6 +4,29 @@
 
 Record completed changes made by the owner or on their behalf. Future work belongs in [ROADMAP.md](ROADMAP.md); technical rationale belongs in [Decisions.md](Decisions.md).
 
+## 2026-10-12 — Restore Dispatch as SENTRI’s lead visual
+
+- Restored Dispatch using the newly supplied console screenshot and a caption identifying it as the core training experience.
+- The case study now leads with Dispatch, followed by architecture, Protocol, employee administration, and company setup. All four previous figures remain available.
+- Named Dispatch explicitly in the key capabilities and updated the image-order regression check.
+- Verification: TypeScript passed; all three SENTRI browser checks passed on desktop, mobile, and reduced motion, including five-image loading and return navigation.
+
+## 2026-10-12 — Expanded SENTRI case study
+
+- Updated the existing project with the confirmed SENTRI title, 2026 date, Team Leader role, and PostgreSQL/Docker/AWS EC2/Coolify tools.
+- Added four concise capability points and five contribution points, preserving the distinction between built, contributed, helped, and supported work.
+- Added optimized supplied architecture, Protocol, employee-management, and company-entry screenshots in that order, with alt text, concise captions, and full-size image links. Demo invitations are identified as simulated.
+- Added optional typed case-study and image-caption fields. SENTRI leads with its name/year and overview; Communimate/Mojo retain their layout. Existing cover, video, navigation, About, and scrolling logic remain intact.
+- Lint, TypeScript, and production build passed. Relevant Chrome browser suite: 45 passed, 15 profile-inapplicable checks skipped, covering desktop, mobile, reduced motion, contact/About, routes, captions, image loading, and return positioning. Desktop case-study screenshot reviewed.
+- Browser checks exposed an existing inactive-snap interruption error. Guarded the optional tween kill method without changing motion parameters; added a browser-error assertion to the existing snapping check. Its focused rerun passed on desktop and reduced motion (two passed, one inapplicable skip). Lint, TypeScript, and build passed again after the guard.
+
+## 2026-10-13 — Stationary hover and stronger project enlargement
+
+- Resolve hover previews from remembered cursor coordinates after native scrolling, spring motion, and snapping settle. Keep cards hidden while moving; resume the correct preview/media after 500ms of quiet.
+- Increase project artwork hover scale to 1.04 while retaining hero scale 1.02, inverse pointer motion, reveal timing, and fixed hit areas. Reset inactive artwork smoothly.
+- Preserve Escape/Tab/blur/exit dismissal, touch summaries, and fixed reduced-motion previews without scale animation. Added stationary-cursor regression coverage across forward/reverse scrolling, media, scale, and dismissal.
+- Verification: lint, TypeScript, and build passed. Browser run: 41 passed, 24 inapplicable skips; one stationary-pointer test needed a hydration-ready start. Its corrected rerun passed in both desktop and reduced-motion profiles (touch skipped). Existing motion, video cleanup, navigation, and touch checks passed in the main run.
+
 ## Recording rules
 
 - Add newest completed changes first, using YYYY-MM-DD dates.

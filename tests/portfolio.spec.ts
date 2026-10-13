@@ -7,7 +7,7 @@ test("Sentri preview plays a silent short clip and reduced motion keeps its post
   await page.mouse.move(800, 400, { steps: 5 });
   const preview = page.locator(".project-preview");
   await expect(preview).toHaveClass(/is-visible/);
-  await expect(preview.getByText("Sentri", { exact: true })).toBeVisible();
+  await expect(preview.getByText("SENTRI", { exact: true })).toBeVisible();
   const video = preview.locator("video");
   if (testInfo.project.name === "reduced-motion") {
     await expect(video).not.toHaveAttribute("src", /mp4/);
@@ -86,7 +86,7 @@ test("menu opens by hover or tap, closes after selection, and supports keyboard 
     await page.keyboard.press("Enter");
     await expect(menu).toBeHidden();
     await page.keyboard.press("Tab");
-    await expect(page.getByRole("link", { name: "View Sentri", exact: true })).toBeFocused();
+    await expect(page.getByRole("link", { name: "View SENTRI", exact: true })).toBeFocused();
     await trigger.hover();
   }
   await page.getByRole("link", { name: "About", exact: true }).click();
@@ -193,9 +193,9 @@ test("project links, detail content, next project, and return navigation work", 
   await page.getByRole("link", { name: "Work", exact: true }).click();
   await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeHidden();
   await expect.poll(() => page.locator("#work").evaluate((el) => Math.abs(el.getBoundingClientRect().top))).toBeLessThan(3);
-  await page.getByRole("link", { name: "View Sentri", exact: true }).click();
+  await page.getByRole("link", { name: "View SENTRI", exact: true }).click();
   await expect(page).toHaveURL(/\/projects\/sentri$/);
-  await expect(page.getByRole("heading", { name: "Sentri", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "SENTRI", exact: true })).toBeVisible();
   await expect(page.getByText("2026", { exact: true })).toBeVisible();
   await expect(page.getByText("To be added", { exact: true })).toHaveCount(0);
   await page.getByRole("link", { name: "Next project Communimate" }).click();
@@ -206,7 +206,7 @@ test("project links, detail content, next project, and return navigation work", 
 });
 
 test("all detail routes and missing-project handling work", async ({ page }) => {
-  for (const [slug, title] of [["sentri", "Sentri"], ["communimate", "Communimate"], ["mojo", "Mojo"]]) {
+  for (const [slug, title] of [["sentri", "SENTRI"], ["communimate", "Communimate"], ["mojo", "Mojo"]]) {
     const response = await page.goto(`/projects/${slug}`);
     expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
@@ -225,7 +225,7 @@ test("keyboard users can skip navigation and open a project", async ({ page, isM
   await expect(page.getByRole("link", { name: "Skip to content" })).toBeFocused();
   await page.keyboard.press("Enter");
   await page.keyboard.press("Tab");
-  await expect(page.getByRole("link", { name: "View Sentri", exact: true })).toBeFocused();
+  await expect(page.getByRole("link", { name: "View SENTRI", exact: true })).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/projects\/sentri$/);
 });
@@ -275,14 +275,16 @@ test("touch summaries and links are always visible", async ({ page, isMobile }) 
   test.skip(!isMobile, "Touch behavior");
   await page.goto("/#work");
   await expect(page.locator("#work .panel-summary")).toBeVisible();
-  await expect(page.getByRole("link", { name: "View Sentri", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View SENTRI", exact: true })).toBeVisible();
   await expect(page.locator(".project-preview")).toBeHidden();
-  await page.getByRole("link", { name: "View Sentri", exact: true }).tap();
+  await page.getByRole("link", { name: "View SENTRI", exact: true }).tap();
   await expect(page).toHaveURL(/\/projects\/sentri$/);
 });
 
 test("scroll settles near panels and reverses; reduced motion stays unanimated", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === "mobile", "Native touch scrolling is checked through mobile navigation");
+  const errors: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   if (testInfo.project.name === "reduced-motion") {
     await expect(page.locator("html")).toHaveCSS("scroll-behavior", "auto");
@@ -309,4 +311,5 @@ test("scroll settles near panels and reverses; reduced motion stays unanimated",
     await page.mouse.wheel(0, -850);
     await expect.poll(() => page.evaluate(() => Math.abs(scrollY - 900))).toBeLessThan(3);
   }
+  expect(errors).toEqual([]);
 });

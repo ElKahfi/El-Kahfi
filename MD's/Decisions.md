@@ -168,7 +168,25 @@ These describe the original HTML prototype, retained for reference. They are not
 - **Alternatives considered:** Expanding the homepage footer would crowd the existing portfolio sequence. New visuals or motion would exceed the requested scope.
 - **Consequences:** About is static, responsive, and keyboard accessible. Unknown project metadata remains omitted; no further biography is required for this request.
 
+## DEC-015 — Expand SENTRI with confirmed ownership and visual evidence
+
+- **Date:** 2026-10-12
+- **Status:** Accepted — implemented
+- **Decision:** Extend the existing SENTRI record with the Team Leader role, confirmed infrastructure tools, compact capability/contribution lists, and four captioned images. Keep `/projects/sentri` and existing cover/preview media.
+- **Rationale:** Lead with the product and architecture, then summarize personal contributions without claiming sole ownership of team work. Full-width images and original-size links keep the evidence readable.
+- **Image mapping:** Architecture → Protocol → employee-management admin screen → company-registration entry screen. The two Deployment screenshots are mapped by their visible content to match the requested captions.
+- **Owner correction:** Dispatch is the core feature and must remain visible. Its new console screenshot now leads the case study before these four images, with a dedicated caption and explicit capability point.
+- **Consequences:** Optional typed fields preserve the other projects' layout. No new animations or dependencies. Screenshot demo data is not presented as real usage or measured results. Unknown Communimate/Mojo metadata remains pending.
+
 ## Template for future decisions
+
+### DEC-016 — Resolve hover ownership after visual movement
+
+- **Date:** 2026-10-13
+- **Status:** Accepted
+- **Decision:** Share curtain-progress notifications with pointer effects and hit-test the last known cursor position after 500ms of quiet. Increase project-only scale to 1.04 and reset inactive artwork. Hero stays at 1.02.
+- **Rationale:** A stationary cursor must discover the project moved beneath it. Waiting until native/visual motion settles avoids flashing previews between panels; event-driven updates avoid a permanent idle loop.
+- **Consequences:** Explicit dismissal clears pointer memory until new movement. Media unmounts while scrolling and resumes through its existing lifecycle. Touch and reduced motion retain their respective static behavior. Supersedes the earlier freeze-inactive-artwork and 2% project-scale choices.
 
 ### DEC-NNN — Short decision title
 

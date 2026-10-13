@@ -107,6 +107,18 @@ a:hover .circle-arrow { background: var(--paper); color: var(--ink); transform: 
 .back-top { display: flex; align-items: center; gap: 22px; font-size: 11px; }
 .back-top .arrow { width: 17px; }
 .detail-page { padding-top: 0; }
+.detail-page--sentri .detail-heading-row { margin-top: 0; }
+.detail-page--sentri .detail-heading > p { max-width: 680px; }
+.case-gallery { margin: 0 var(--gutter) 70px; }
+.case-gallery figure { margin: 0 0 65px; }
+.case-gallery img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.case-caption { padding-block: 24px; max-width: 760px; }
+.case-caption h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -.035em; }
+.case-caption p, .case-points { font-size: 15px; line-height: 1.8; color: var(--muted); }
+.case-caption p { margin-top: 12px; }
+.case-caption a { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+.case-points { padding-left: 20px; margin: 18px 0 0; max-width: 620px; }
+.case-points li + li { margin-top: 12px; }
 .detail-heading { padding: 25px var(--gutter) 65px; }
 .text-link { display: inline-flex; gap: 14px; align-items: center; font-size: 12px; }
 .text-link .arrow { width: 18px; height: 18px; }

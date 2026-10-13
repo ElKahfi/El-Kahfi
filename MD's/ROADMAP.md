@@ -108,12 +108,23 @@ DEC-012 supersedes the directly scroll-bound curtain edge and 48px artwork revea
 - [x] Use only the supplied description, phone, email, LinkedIn, and GitHub information.
 - [x] Connect shared navigation and the homepage footer while preserving portfolio effects.
 
+## Completed — SENTRI case study, 2026-10-12
+
+- [x] Restore Dispatch as the lead case-study image and explicitly identify it as the core training console; retain the four supporting figures.
+
+- [x] Confirm SENTRI (2026), Team Leader, PostgreSQL, Docker, AWS EC2, and Coolify.
+- [x] Summarize capabilities in four points and contributions in five points, retaining supporting/team attribution.
+- [x] Present architecture, Gmail Protocol, employee administration, and company setup images with captions and full-size links.
+- [x] Preserve existing routes, cover/hover media, other projects, About, and motion behavior.
+
 ## Awaiting owner content
 
-- [ ] Confirm years for Communimate and Mojo, and personal roles/tools for all three projects.
+Completed 2026-10-13: stationary-pointer previews resume after scrolling and curtain settling, project artwork enlarges by 4%, inactive artwork resets, and keyboard/exit dismissal remains persistent until pointer movement.
+
+- [ ] Confirm years and personal roles/tools for Communimate and Mojo.
   - Completion: only confirmed values replace the currently empty fields.
 - [ ] Supply final case-study copy, including any verified metrics, outcomes, or research the owner wishes to publish.
-  - Completion: supporting copy for Sentri, Communimate, and Mojo is approved without inferring achievements from screenshots.
+  - Completion: remaining Communimate and Mojo copy is approved without inferring achievements from screenshots. SENTRI's supplied case-study copy is implemented.
 - [x] Publish the confirmed owner description, categorized skills, and supplied contact links at `/#about`.
 
 The portfolio now uses real owner-supplied names, descriptions, and media. Missing metadata does not block reviewing the experience and is omitted from the interface.
