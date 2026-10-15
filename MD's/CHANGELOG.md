@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-16 — Downloadable CV in About Me
+
+- Added a Download CV link below the About introduction, styled with the existing dark palette, rounded border, and downward arrow.
+- Served the supplied CV unchanged at `/documents/athariq-el-kahfi-cv.pdf`, with the download filename `Athariq El Kahfi CV.pdf`.
+- Updated the existing keyboard-navigation check for the new link's position before the contact links.
+- Confirmed the serving copy matches the supplied PDF byte for byte. Lint and the existing About browser checks passed (eight checks; one touch-profile skip).
+
 ## 2026-10-15 — Expanded Mojo and standardized personal case studies
 
 - Added Mojo's Ongoing year, System Design Infrastructure role, database/API/system-flow/future-scaling contributions, and live project link. Used the attached technical overview for its purpose, capabilities, confirmed stack, and current prototype status.

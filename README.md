@@ -59,6 +59,8 @@ Project details use a local content rotator: one image and its related text at a
 
 ## About Me
 
+The About introduction includes a Download CV link to `public/documents/athariq-el-kahfi-cv.pdf`. It downloads the owner-supplied PDF as `Athariq El Kahfi CV.pdf`; replace the serving copy to update the CV.
+
 The static `/#about` section contains the owner-approved description, Development skills (Python, JavaScript, TypeScript, React, HTML, CSS), Data and Infrastructure (SQL, AWS/Cloud, Docker), and Design and Tools (Figma, GitHub, VS Code). Phone, email, LinkedIn, and GitHub links use the supplied details. Edit `components/About.tsx` to maintain this content. The shared About menu item scrolls to this section. No additional biography is required for this scope; project metadata and case-study content remain pending.
 
 ## Project content

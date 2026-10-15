@@ -325,6 +325,9 @@ dd { font-size: 13px; line-height: 1.6; margin: 8px 0 0; }
 .about-intro { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start; padding-bottom: 100px; }
 .about-intro h2 { font-family: var(--serif); font-size: clamp(64px, 7vw, 110px); font-weight: 400; letter-spacing: -.055em; line-height: 1; }
 .about-intro p { max-width: 660px; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.65; }
+.about-cv { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; margin-top: 28px; padding: 12px 22px; border: 1px solid #ffffff40; border-radius: 999px; background: #ffffff08; font-size: 13px; transition: background .2s, border-color .2s; }
+.about-cv:hover { background: #ffffff12; border-color: #ffffff80; }
+.about-cv .arrow { width: 18px; height: 18px; }
 .about-section { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; border-top: 1px solid #ffffff28; padding-block: 42px; }
 .about-section h2 { font-family: var(--serif); font-size: 36px; font-weight: 400; letter-spacing: -.035em; }
 .about-skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }

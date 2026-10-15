@@ -31,6 +31,10 @@ test("About supports keyboard skip, visible contact focus and menu return", asyn
   await page.keyboard.press("Enter");
   await page.locator("#about").focus();
   await page.keyboard.press("Tab");
+  const cv = page.getByRole("link", { name: "Download CV", exact: true });
+  await expect(cv).toBeFocused();
+  await expect(cv).toHaveCSS("outline-style", "solid");
+  await page.keyboard.press("Tab");
   const phone = page.getByRole("link", { name: "08151610212" });
   await expect(phone).toBeFocused();
   await expect(phone).toHaveCSS("outline-style", "solid");
