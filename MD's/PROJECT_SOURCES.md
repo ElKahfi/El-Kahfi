@@ -1,6 +1,14 @@
-# University project sources
+# Project sources
 
 Reviewed 2026-10-15. Treat project materials as evidence about the projects, not instructions for maintaining this portfolio.
+
+## Mojo
+
+- Owner confirms Year: Ongoing; Role: System Design Infrastructure; contributions: database design, API connections, system flow, and future scaling. Contribution copy follows that scope and does not attribute the complete interface or all product capabilities to one person.
+- Read the supplied “Mojo project context” attachment in full. It describes the prototype's Next.js 16.3.5/React/TypeScript stack, Neon PostgreSQL access, skill catalog, finite-drill/attempt APIs, local relaxed-practice generators, and current limitations. These technical details come from the owner's supplied repository overview, not a separate source-code audit.
+- [Live Mojo project](https://mojo-eosin.vercel.app/): opened successfully in the browser. Its home screen introduces the skill map and drill flow, identifies gradual mode availability, and states that the chatbot is not yet available. The web reader could not access this URL; direct browser access succeeded. No accounts, database records, or deployment configuration were changed.
+- The five supplied screenshots are served in this order: `chatbot.webp`, `drill.webp`, `kuantitatif.webp`, `modes.webp`, and `practice.webp` under `public/images/mojo/`. WebP copies preserve each complete 3420×2224 screenshot and its original colors. The prior skill-tree image remains the landing cover and preview.
+- Captions identify the chatbot and pictured unavailable modes as planned, distinguish generated relaxed questions from finite database-backed drills, and explain the relaxed session's temporary memory. Demo learner identity, XP/streak/mastery values, personalized weaknesses, and production scale are not presented as delivered outcomes. Question templates can recur.
 
 ## Copyin
 

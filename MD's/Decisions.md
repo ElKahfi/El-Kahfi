@@ -1,5 +1,13 @@
 # Technical Decisions
 
+## DEC-023 — One personal-project detail template based on SENTRI
+
+- **Date:** 2026-10-15
+- **Status:** Accepted at the owner's request; extends DEC-019's layout to all personal projects.
+- **Decision:** Extract `ProjectDetails` and use shared personal-page styling for SENTRI, Communimate, and Mojo. Keep a common sequence of header, external links, gallery, metadata, capability/contribution cards, optional narratives, and next/return navigation.
+- **Rationale:** The owner wants projects to feel like variations within one portfolio standard, with differences driven by verified content rather than separate page designs.
+- **Consequences:** Optional links and content arrays render only when available. Preserve SENTRI/Communimate copy and repository links; Mojo adds owner-confirmed metadata, a live link, five supplied images, and clearly stated prototype limitations. Individual contribution claims stay within the owner's four supplied areas. The university selector keeps its own presentation.
+
 ## DEC-022 — Carry the hero's city and control styling into the introductions
 
 - **Date:** 2026-10-15

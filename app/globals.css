@@ -142,8 +142,9 @@ a:hover .circle-arrow { background: var(--paper); color: var(--ink); transform: 
 .back-top .arrow { width: 17px; }
 .detail-page { padding-top: 0; }
 .detail-page .detail-heading-row { margin-top: 0; }
-.project-repository { padding: 0 var(--gutter) 28px; }
-.project-repository a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; text-decoration: underline; text-underline-offset: 5px; }
+.project-links { display: flex; flex-wrap: wrap; gap: 12px 30px; padding: 0 var(--gutter) 28px; }
+.project-links a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: 13px; text-decoration: underline; text-underline-offset: 5px; }
+.project-links .arrow { width: 16px; height: 16px; }
 .project-rotator { margin: 0 var(--gutter) 45px; }
 .rotator-slide { margin: 0; display: grid; grid-template-columns: 1fr; gap: 28px; }
 .rotator-image { height: min(62svh, 650px); min-height: 280px; display: flex; align-items: center; justify-content: center; touch-action: pan-y pinch-zoom; cursor: grab; overflow: hidden; }
@@ -162,8 +163,7 @@ a:hover .circle-arrow { background: var(--paper); color: var(--ink); transform: 
   .rotator-image { height: 45svh; min-height: 200px; }
   .rotator-caption { min-height: 245px; }
 }
-.detail-page--sentri .detail-heading-row { margin-top: 0; }
-.detail-page--sentri .detail-heading > p { max-width: 680px; }
+.personal-project-page .detail-heading > p { max-width: 680px; }
 .case-gallery { margin: 0 var(--gutter) 70px; }
 .case-gallery figure { margin: 0 0 65px; }
 .case-gallery img { display: block; width: 100%; height: auto; border-radius: 8px; }
@@ -194,26 +194,28 @@ dd { font-size: 13px; line-height: 1.6; margin: 8px 0 0; }
 .detail-story .eyebrow { color: #9ea497; }
 .detail-story h2 { font-family: var(--serif); font-size: 42px; letter-spacing: -.035em; font-weight: 400; margin-top: 12px; }
 .detail-story p { max-width: 570px; line-height: 1.8; font-size: 15px; color: #b3b8ad; margin-top: 18px; }
-.detail-page--sentri .detail-body { grid-template-columns: minmax(0, 1fr); gap: 48px; max-width: 1440px; margin-inline: auto; }
-.detail-page--sentri .detail-body aside { width: 100%; max-width: 760px; margin: 0 auto; text-align: center; }
-.detail-page--sentri .detail-body aside > .eyebrow,
-.detail-page--sentri .detail-body dt { color: #aaa; }
-.detail-page--sentri .detail-body dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 24px; }
-.detail-page--sentri .detail-body dl > div { border-top: 0; border-bottom: 1px solid #ffffff35; padding: 16px 12px 24px; }
-.detail-page--sentri .detail-body dd { font-size: 16px; }
-.detail-page--sentri .detail-story { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
-.detail-page--sentri .detail-story section { border: 1px solid #ffffff25; padding: clamp(24px, 3vw, 44px); min-width: 0; }
-.detail-page--sentri .detail-story section + section { margin-top: 0; }
-.detail-page--sentri .detail-story h2 { margin-top: 0; font-size: clamp(32px, 3vw, 42px); }
-.detail-page--sentri .detail-story p,
-.detail-page--sentri .case-points { color: #bbb; }
+.personal-project-page .detail-body { grid-template-columns: minmax(0, 1fr); gap: 48px; max-width: 1440px; margin-inline: auto; }
+.personal-project-page .detail-body aside { width: 100%; max-width: 760px; margin: 0 auto; text-align: center; }
+.personal-project-page .detail-body aside > .eyebrow,
+.personal-project-page .detail-body dt { color: #aaa; }
+.personal-project-page .detail-body dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 32px; margin-top: 24px; }
+.personal-project-page .detail-body dl > div { border-top: 0; border-bottom: 1px solid #ffffff35; padding: 16px 12px 24px; }
+.personal-project-page .detail-body dd { font-size: 16px; overflow-wrap: anywhere; }
+.personal-project-page .detail-story { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+.personal-project-page .detail-card { border: 1px solid #ffffff25; padding: clamp(24px, 3vw, 44px); min-width: 0; }
+.personal-project-page .detail-story section + section { margin-top: 0; }
+.personal-project-page .detail-story h2 { margin-top: 0; font-size: clamp(32px, 3vw, 42px); }
+.personal-project-page .detail-story p,
+.personal-project-page .case-points { color: #bbb; }
+.personal-project-page .detail-card--narrative { grid-column: 1 / -1; }
+.personal-project-page .detail-card--narrative p { max-width: 800px; }
 @media (max-width: 899px) {
-  .detail-page--sentri .detail-body { display: grid; gap: 32px; }
-  .detail-page--sentri .detail-body aside { margin-bottom: 0; }
-  .detail-page--sentri .detail-story { grid-template-columns: minmax(0, 1fr); }
+  .personal-project-page .detail-body { display: grid; gap: 32px; }
+  .personal-project-page .detail-body aside { margin-bottom: 0; }
+  .personal-project-page .detail-story { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 519px) {
-  .detail-page--sentri .detail-body dl { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .personal-project-page .detail-body dl { grid-template-columns: minmax(0, 1fr); gap: 8px; }
 }
 .next-project { margin: 0 var(--gutter); padding: 55px 0; border-top: 1px solid #ffffff35; display: flex; align-items: center; justify-content: space-between; }
 .next-project h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 7vw, 100px); letter-spacing: -.055em; margin-top: 10px; }
@@ -285,8 +287,9 @@ dd { font-size: 13px; line-height: 1.6; margin: 8px 0 0; }
   .detail-gallery figure { padding: 24px; }
   .detail-heading { padding-top: 15px; padding-bottom: 40px; }
   .detail-heading-row { margin-top: 40px; display: block; }
-  .detail-page--communimate .detail-heading h1 { font-size: clamp(40px, 12vw, 65px); }
   .detail-heading h1 { font-size: 72px; }
+  .personal-project-page .detail-heading h1 { font-size: clamp(40px, 12vw, 72px); overflow-wrap: anywhere; }
+  .personal-project-page .detail-heading-row { display: flex; flex-direction: column; align-items: start; gap: 16px; }
   .project-section--personal h2 { font-size: clamp(38px, 11vw, 60px); }
   .university-intro h2 { font-size: clamp(52px, 13vw, 78px); }
   .personal-intro { gap: 22px; }

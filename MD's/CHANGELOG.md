@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-15 — Expanded Mojo and standardized personal case studies
+
+- Added Mojo's Ongoing year, System Design Infrastructure role, database/API/system-flow/future-scaling contributions, and live project link. Used the attached technical overview for its purpose, capabilities, confirmed stack, and current prototype status.
+- Added the five owner screenshots in order: Chatbot, Drill, Kuantitatif Drill List, Drill Mode, Drill Mode Content. Complete 3420×2224 WebP copies preserve colors and proportions; each has a caption and descriptive alternative text. The prior skill-tree image remains the landing cover/preview.
+- Replaced the broad unlimited-question claim with more precise descriptions of finite database-backed drills and local relaxed-practice templates. Identified unavailable chat/modes, demo progress values, temporary session state, and planned personalized weaknesses.
+- Extracted one `ProjectDetails` server component and applied SENTRI's centered metadata and bordered capability/contribution cards to every personal project. Optional narratives use the same card system; absent fields produce no placeholders. Retained SENTRI/Communimate content, repository links, galleries, and navigation.
+- Verified shared layout, all five Mojo images, keyboard/touch gallery interaction, next/return navigation, safe external-link attributes, and 320px layout. The 12 related browser checks passed across desktop, mobile, and reduced motion; screenshots were reviewed. Lint, TypeScript, and production build passed. The supplied live Mojo URL opened successfully in the browser.
+
 ## 2026-10-15 — Atmospheric project introductions and a softer collection button
 
 - Retained the approved compact Personal / Team height and full-screen University Projects layout. Reused the hero city illustration as a decorative, low-contrast background with charcoal shading in both sections.

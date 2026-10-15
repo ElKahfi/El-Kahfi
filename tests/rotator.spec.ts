@@ -54,7 +54,7 @@ test("rotator changes image and text without navigation, supports drag and keybo
   for (const [slug, title] of [["communimate", "Communimate"], ["mojo", "Mojo"]]) {
     await page.goto(`/projects/${slug}`);
     await page.getByRole("button", { name: "Next slide" }).click();
-    await expect(page.getByText("Slide 2 of 2")).toBeVisible();
+    await expect(page.getByText(`Slide 2 of ${slug === "mojo" ? 5 : 2}`)).toBeVisible();
     const link = page.getByRole("link", { name: `View ${title} on GitHub` });
     if (slug === "mojo") await expect(link).toHaveCount(0);
     else await expect(link).toHaveAttribute("href", "https://github.com/ElKahfi/Communimate");

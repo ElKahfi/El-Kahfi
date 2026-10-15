@@ -12,6 +12,14 @@ Keep work within the owner's agreed scope. Record what is done, what comes next,
 - Record a concrete outcome and observable completion criteria for each new item.
 - Update CHANGELOG.md for completed changes and Decisions.md for agreed technical choices.
 
+## Completed — Mojo content and shared personal case studies, 2026-10-15
+
+- [x] Expand Mojo using the attached technical context, owner-confirmed Ongoing year, System Design Infrastructure role, and four contribution areas.
+- [x] Add all five supplied screenshots in the requested order with captions, alt text, and the live Mojo link; keep the skill-tree cover on the landing page.
+- [x] Use SENTRI's layout as the shared `ProjectDetails` template for SENTRI, Communimate, and Mojo, with optional fields and sections.
+- [x] Preserve each project's existing supported content and links, gallery controls, next/return navigation, and reduced-motion behavior.
+- [x] Verify responsive layouts, image order/loading, keyboard/touch browsing, and link destinations.
+
 ## Completed — distinct project introductions, 2026-10-15
 
 - [x] Make the Personal / Team introduction a short, centered heading that flows directly into the three existing project slides.
@@ -138,14 +146,14 @@ DEC-012 supersedes the directly scroll-bound curtain edge and 48px artwork revea
 
 Completed rotator layout correction: top indicator, centered description beneath the image, architecture last, and removal of full-size links.
 
-Completed 2026-10-13: remove preview idle delay; add project-local image/text rotators, line indicators, drag/swipe and keyboard controls; add supplied SENTRI and Communimate repositories. More unique Communimate/Mojo images and a Mojo repository may be supplied later; current content remains usable.
+Completed 2026-10-13: remove preview idle delay; add project-local image/text rotators, line indicators, drag/swipe and keyboard controls; add supplied SENTRI and Communimate repositories. Mojo's five new images and live-site link were added on 2026-10-15; additional Communimate images or a Mojo repository may be supplied later.
 
 Completed 2026-10-13: stationary-pointer previews resume after scrolling and curtain settling, project artwork enlarges by 4%, inactive artwork resets, and keyboard/exit dismissal remains persistent until pointer movement.
 
-- [ ] Confirm years and personal roles/tools for Communimate and Mojo.
-  - Completion: only confirmed values replace the currently empty fields.
-- [ ] Supply final case-study copy, including any verified metrics, outcomes, or research the owner wishes to publish.
-  - Completion: remaining Communimate and Mojo copy is approved without inferring achievements from screenshots. SENTRI's supplied case-study copy is implemented.
+- [x] Confirm years and personal roles/tools for Communimate and Mojo through supplied owner context.
+- [x] Expand all three personal case studies using verified owner context and a shared presentation.
+- [ ] Supply any measured outcomes or research the owner wishes to publish.
+  - Completion: add only supported results; demo statistics remain identified as illustrative.
 - [x] Publish the confirmed owner description, categorized skills, and supplied contact links at `/#about`.
 
 The portfolio now uses real owner-supplied names, descriptions, and media. Missing metadata does not block reviewing the experience and is omitted from the interface.

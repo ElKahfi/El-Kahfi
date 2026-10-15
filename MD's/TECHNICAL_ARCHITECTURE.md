@@ -23,7 +23,7 @@ app/layout.tsx — metadata, global CSS, skip link
 │   └── Footer → branding and back-to-top link
 ├── components/About.tsx — homepage owner description, grouped skills, contact links
 ├── app/projects/[slug]/page.tsx
-│   └── data/projects.ts → detail content, cover, next/return links
+│   └── data/projects.ts → ProjectDetails → shared header, links, rotator, metadata/cards, next/return links
 ├── app/university-projects/page.tsx
 │   └── data/university-projects.ts → UniversityProjects → selected project and controls
 └── app/not-found.tsx — unknown route/project
@@ -39,6 +39,7 @@ The detail route awaits asynchronous route parameters, uses `generateStaticParam
 | `components/Navigation.tsx` | Fixed top-center menu with hover, focus, click/tap, Escape, outside dismissal, and hidden/inert links. |
 | `components/Hero.tsx` | Client component for shared city/text illumination and centered identity. |
 | `components/ProjectPanel.tsx` | Server-rendered image-led panel, hidden semantic title, touch summary, and one full-panel project link. |
+| `components/ProjectDetails.tsx` | Shared server-rendered personal case-study template for SENTRI, Communimate, and Mojo, with optional metadata, links, and content cards. |
 | `components/ProjectPreview.tsx` | Client component for the decorative, non-interactive cursor card. |
 | `components/PreviewMedia.tsx` | Poster image and optional muted video; playback lifecycle and reduced-motion fallback. |
 | `components/ScrollExperience.tsx` | ScrollTrigger target observation, a critically damped visual follower, artwork parallax, anchor reconciliation, and gentle desktop snapping. |
@@ -53,11 +54,13 @@ The detail route awaits asynchronous route parameters, uses `generateStaticParam
 
 ## Content flow
 
-Each `Project` contains `slug`, `title`, nullable `year`, `summary`, nullable `role`, `tools`, `coverImage`, `coverAlt`, `presentation` (mascot/interface), `previewImage`, optional `previewVideo`, `gallery`, `detailContent`, `isPlaceholder`, and `theme`. Gallery entries carry source, meaningful alt text, width, and height. Panels, previews, and detail pages consume this shared source. Detail pages lead with the first gallery image, followed by concise supporting text, any additional images, and next/return links.
+Each `Project` contains `slug`, `title`, nullable `year` (number or Ongoing), `summary`, nullable `role`, `tools`, optional `repository`/`website`, `coverImage`, `coverAlt`, `presentation` (mascot/interface), `previewImage`, optional `previewVideo`, `gallery`, `detailContent`, optional `caseStudy`, `isPlaceholder`, and `theme`. Gallery entries carry source, meaningful alt text, width, and height. Panels, previews, and detail pages consume this shared source.
 
-All three records are non-placeholder. SENTRI has confirmed year 2026, role Team Leader, and PostgreSQL/Docker/AWS EC2/Coolify tools. Communimate and Mojo years/roles remain null and tools empty. Unknown fields are omitted. Owner statements establish SENTRI contributions; screenshots do not establish measured outcomes.
+All three records are non-placeholder. SENTRI has confirmed year 2026, role Team Leader, and PostgreSQL/Docker/AWS EC2/Coolify tools. Communimate is an Ongoing Independent Project using HTML/CSS/JavaScript. Mojo is Ongoing with role System Design Infrastructure; its supplied context supports Next.js/React/TypeScript/Neon PostgreSQL. Unknown fields are omitted. Owner statements establish individual contributions; screenshots do not establish measured outcomes.
 
-Optional `caseStudy` capability/contribution arrays and optional gallery `title`/`caption` fields support the expanded SENTRI page. Its title/year/overview precede the architecture image, compact role/capability lists, and four further full-width figures. Image order is Dispatch, architecture, Gmail Protocol, employee admin, company setup. Caption links open full-size assets without new client effects. Serving WebP copies preserve image proportions and colors (Dispatch 2170×1196; architecture 2036×990; other images 2400×1561). Other projects retain their original detail layout. The admin screenshot is identified as a demo, not proof of real users or outcomes. SENTRI's system architecture is case-study content, not the portfolio's runtime architecture.
+`ProjectDetails` renders one common order: title/year/summary, available external links, `ProjectRotator`, centered role/tools, paired Key capabilities/My role cards, optional narrative cards, and next/return navigation. Capability/contribution arrays and narrative sections are individually optional; absent metadata or links produce no placeholder blocks. Shared `.personal-project-page` styles apply SENTRI's centered metadata and bordered card treatment to every personal project; cards stack on narrow screens. University details retain their separate selector layout.
+
+SENTRI's visual order is Dispatch, Protocol, employee admin, company setup, then Technical architecture. Its demo admin invitations remain identified as simulated. Mojo's five captioned screenshots follow the owner's order: Chatbot, Drill, Kuantitatif Drill List, Drill Mode, Drill Mode Content. Communimate keeps its two narrative slides using the existing image. Mojo's former skill-tree gallery image remains its homepage cover/preview. Its current capabilities, contribution scope, demo state, and planned features are based on the supplied technical overview; the source record is in PROJECT_SOURCES.md.
 
 React state changes when a different preview becomes active. Pointer positions use refs and direct style updates instead of rerendering the application on every movement.
 
@@ -115,7 +118,7 @@ Rotator layout correction: controls/indicator precede the single full-width imag
 
 Real-time preview and rotator update (2026-10-13): `ProjectPreview` now hit-tests on every native scroll and curtain-progress/settled notification, retaining the card while a project is identifiable. The 500ms quiet timer and wheel-based hiding are removed. Project ownership changes update React state; same-project movement retains the mounted media. Explicit dismissal clears pointer memory. These events are produced only during movement; preview positioning stops once settled, with no idle polling.
 
-`ProjectRotator` is a client component receiving serializable `ProjectSlide[]` from `getProjectSlides` in the server route. SENTRI gallery captions define five slides; single-image projects reuse the supplied visual with existing narrative sections. Local index state switches image/heading/body together, wraps Previous/Next and arrow keys, and supports primary-pointer capture with a 50px horizontal threshold. `touch-action: pan-y pinch-zoom` preserves vertical scrolling and zoom. No auto-advance or animated slide transition is used, including reduced motion. The line indicator shows a white segment on grey; a polite live caption announces slide count. Only the active image is rendered; meaningful alt/full-size links remain. `repository` is optional and the two supplied links use `target="_blank" rel="noopener noreferrer"`. Contributions and metadata remain server-rendered below the rotator.
+`ProjectRotator` is a client component receiving serializable `ProjectSlide[]` through `getProjectSlides` in `ProjectDetails`. SENTRI and Mojo gallery captions each define five slides; Communimate reuses its supplied visual with two narrative sections. Local index state switches image/heading/body together, wraps Previous/Next and arrow keys, and supports primary-pointer capture with a 50px horizontal threshold. `touch-action: pan-y pinch-zoom` preserves vertical scrolling and zoom. No auto-advance or animated slide transition is used, including reduced motion. The line indicator shows a white segment on grey; a polite live caption announces slide count. Only the active image is rendered, with meaningful alt text. Optional repository/live-site links use `target="_blank" rel="noopener noreferrer"`. Contributions and metadata remain server-rendered below the rotator.
 
 Stationary hover (2026-10-13): `ProjectPreview` remembers the latest pointer coordinates and hit-tests with `elementFromPoint`. Native scrolling, wheel input, and `curtainprogress`/`curtainsettled` signals hide/unmount the preview and restart a 500ms quiet timer. After native movement, visual spring movement, and snapping finish, it resolves the current project and remounts its preview/media. Tab, Escape, blur, and pointer exit clear the remembered pointer, preventing a pending timer from undoing dismissal. Timers and listeners are cleared on unmount. Reduced motion retains a fixed-corner poster preview; touch retains inline summaries. `VisualMotion` shares the progress signal for active ownership, targets 1.04 for projects (hero 1.02), and resets inactive artwork. Frame loops stop when transforms settle; no continuous idle polling is added.
 
@@ -137,7 +140,7 @@ Next.js generates `AGENTS.md` with version-specific framework guidance. The comp
 
 ## Remaining limits
 
-Years, roles, tools, and final case-study copy for Communimate/Mojo remain pending, as do any verified outcomes the owner wishes to publish. SENTRI's supplied case-study content is confirmed. Chrome desktop and emulated mobile checks do not substitute for physical phones or Safari/Firefox before publication. Production performance scores have not been measured. The earlier installation audit reported a development-only lint dependency chain involving `braces`; it has not been rerun for this content refinement. No framework downgrade was applied to work around that advisory.
+Personal project metadata and case-study copy are supported by owner context; measured outcomes remain unconfirmed. Communimate and Mojo's planned features need content updates when implemented. Chrome desktop and emulated mobile checks do not substitute for physical phones or Safari/Firefox before publication. Production performance scores have not been measured. The earlier installation audit reported a development-only lint dependency chain involving `braces`; it has not been rerun for this content refinement. No framework downgrade was applied to work around that advisory.
 
 ## About Me section
 
