@@ -36,9 +36,9 @@ test("all project artwork scales and moves opposite the pointer without moving t
   test.skip(testInfo.project.name !== "desktop", "Fine-pointer motion");
   await page.goto("/#work");
   await expect(page.locator(".spring-curtains")).toHaveCount(1);
-  for (const [index, id] of ["work", "communimate", "mojo"].entries()) {
+  for (const id of ["work", "communimate", "mojo"]) {
     await page.mouse.move(-10, -10);
-    await page.evaluate((y) => scrollTo({ top: y, behavior: "instant" }), (index + 1) * 900);
+    await page.locator(`#${id}`).evaluate(el => scrollTo({ top: (el as HTMLElement).offsetTop, behavior: "instant" }));
     const art = page.locator(`#${id} .project-art`);
     await expect.poll(async () => Math.abs((await transform(art)).y)).toBeLessThan(0.1);
     const link = page.locator(`#${id} .panel-hit-area`);
@@ -63,16 +63,18 @@ test("artwork reveal follows and reverses curtain progress with bounded settling
   await page.goto("/");
   await expect(page.locator(".spring-curtains")).toHaveCount(1);
   await page.mouse.move(-10, -10);
-  for (const [index, id] of ["work", "communimate", "mojo"].entries()) {
+  for (const id of ["work", "communimate", "mojo"]) {
     const art = page.locator(`#${id} .project-art`);
+    const { start, end } = await page.locator(`#${id}`).evaluate(el => ({ start: (el.previousElementSibling as HTMLElement).offsetTop, end: (el as HTMLElement).offsetTop }));
     for (const progress of [0, 0.5, 1, 0.5, 0]) {
-      await page.evaluate((y) => scrollTo({ top: y, behavior: "instant" }), (index + progress) * 900);
+      const destination = start + (end - start) * progress;
+      await page.evaluate((y) => scrollTo({ top: y, behavior: "instant" }), destination);
       // Counter-translation keeps artwork travel to one quarter of the panel distance.
-      await expect.poll(async () => Math.abs((await transform(art)).y - -675 * (1 - progress))).toBeLessThan(0.5);
+      await expect.poll(async () => Math.abs((await transform(art)).y - -0.75 * (end - start) * (1 - progress))).toBeLessThan(0.5);
       const first = await transform(art);
       await page.waitForTimeout(400);
       expect(Math.abs((await transform(art)).y - first.y)).toBeLessThan(0.5);
-      expect(await page.evaluate(() => scrollY)).toBe((index + progress) * 900);
+      expect(Math.abs((await page.evaluate(() => scrollY)) - destination)).toBeLessThan(1);
     }
   }
 });

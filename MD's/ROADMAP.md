@@ -12,6 +12,23 @@ Keep work within the owner's agreed scope. Record what is done, what comes next,
 - Record a concrete outcome and observable completion criteria for each new item.
 - Update CHANGELOG.md for completed changes and Decisions.md for agreed technical choices.
 
+## Completed — distinct project introductions, 2026-10-15
+
+- [x] Make the Personal / Team introduction a short, centered heading that flows directly into the three existing project slides.
+- [x] Keep the University Projects introduction full-screen, center its title and a single large collection button, and use a minimal dark-grey treatment.
+- [x] Preserve anchors, navigation, curtain behavior, touch flow, and reduced motion while accommodating the shorter scroll slot.
+- [x] Refine both introductions with subdued city backgrounds, charcoal shading, fine rules, and a rounded dark university collection link, retaining the approved sizes.
+
+## Completed — university project collection, 2026-10-15
+
+- [x] Add Personal / Team and University Projects divider slides around the existing personal project panels.
+- [x] Create `/university-projects` with Copyin, TukaKu, and Batikeryday; switch images and all project details together.
+- [x] Show confirmed Team Leader roles, supported tools, original supplied visuals, and project-specific source links.
+- [x] Provide list selection, Previous/Next controls, keyboard/swipe input, and return navigation to the university divider.
+- [x] Read accessible project materials and record sources and access limitations in PROJECT_SOURCES.md.
+
+Remaining content opportunities: a readable export of the full Batikeryday deck and embedded Copyin diagrams, confirmed university project dates, and any owner-supplied individual contributions or measured outcomes. These are omitted until confirmed.
+
 ## Completed — documentation foundation, 2026-10-06
 
 - [x] Create the five project documents with distinct purposes and verified baseline information.

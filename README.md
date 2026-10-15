@@ -6,9 +6,13 @@ Introduce the portfolio, explain how to run and maintain it, and link to its sco
 
 ## The portfolio
 
-A responsive Next.js portfolio with the original dark city illustration and the confirmed identity **ELKAHFI — System Design** centered on the screen. A shared soft spotlight illuminates the city and text, with restrained depth on the name. A small top-center button reveals Intro, Work, and About navigation.
+A responsive Next.js portfolio with the original dark city illustration and the confirmed identity **ELKAHFI — System Design** centered on the screen. A shared soft spotlight illuminates the city and text, with restrained depth on the name. A small top-center button reveals Intro, Work, University, and About navigation.
 
-Scrolling raises each incoming project panel over a stationary previous section, like a curtain. The sequence presents Sentri, Communimate, and Mojo through their supplied visuals, reverses on upward scrolling, and gently settles only very close to section boundaries on desktop. Hover previews provide context and links open individual project pages.
+Scrolling raises each incoming project panel over a stationary previous section, like a curtain. The sequence is Hero → compact Projects (Personal / Team) heading → SENTRI → Communimate → Mojo → University Projects → About. The shorter heading flows directly into SENTRI; the full-screen, centered, dark-grey University Projects introduction has one prominent button to open the separate collection. Scrolling reverses on upward movement and gently settles only very close to section boundaries on desktop. Hover previews provide context and links open individual personal project pages.
+
+The University Projects divider links to `/university-projects`. Its project list and Previous/Next controls switch the complete entry: image, title, description, role, tools, narrative, and links. The focused image supports left/right arrow keys and horizontal swipe. All three university projects have the owner-confirmed Team Leader role. Back to portfolio returns to `/#university`.
+
+Both introductions reuse the hero's city illustration beneath static charcoal shading. Fine rules frame the compact personal heading; the university slide pairs a two-line serif title with a subtle inset border and a rounded dark collection link. Its circular arrow echoes the personal-project controls, with visible keyboard focus and restrained hover feedback.
 
 On a fine-pointer device, the active hero grows by 2% and project artwork by 4%. The hero moves gently toward the cursor; project artwork moves slightly in the opposite direction. A critically damped visual follower smooths stepped wheel input while native scrolling retains control. Images travel 25% of the curtain distance and settle into their original framing; fine pixel input uses a faster response to stay responsive. Touch devices use static artwork and ordinary scrolling.
 
@@ -56,6 +60,10 @@ The static `/#about` section contains the owner-approved description, Developmen
 ## Project content
 
 Edit `data/projects.ts` to maintain content. Each entry contains a slug, title, year, summary, role, tools, cover image and description, presentation style, preview image, optional preview video, gallery, detail sections, placeholder flag, and visual theme. Store images in `public/images/` and video in `public/media/`.
+
+University content lives in `data/university-projects.ts`; supplied screenshots are served as WebP files in `public/images/university/`, preserving the entire original image and its proportions. Copyin lists Figma and draw.io, TukaKu lists Figma and Canva, and Batikeryday lists CLO and Canva. These describe the design/documentation materials, not a verified application implementation stack. No university project years or measured results are claimed.
+
+Copyin copy was checked against the supplied report, assignment brief in its Drive folder, and Figma structure. TukaKu copy uses the owner context, accessible Canva presentation, Figma landing screen, and supplied interface overview. Batikeryday uses the owner context and CLO screenshot; its Canva link resolves to a presentation but repeatedly blocks further viewing, so the full deck was not verified. Original source links are included on each entry. See `MD's/PROJECT_SOURCES.md` for the source record and remaining gaps.
 
 | Project | Confirmed content |
 | --- | --- |

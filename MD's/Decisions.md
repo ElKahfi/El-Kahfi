@@ -1,5 +1,29 @@
 # Technical Decisions
 
+## DEC-022 — Carry the hero's city and control styling into the introductions
+
+- **Date:** 2026-10-15
+- **Status:** Accepted at the owner's request for more complete styling; builds on DEC-021.
+- **Decision:** Reuse the existing city asset under static charcoal gradients, add restrained rules and serif emphasis, and use a rounded dark collection button with the portfolio's circular-arrow motif.
+- **Rationale:** The owner wants the compact personal heading and centered university slide to feel intentional and visually connected to the landing page, with an inviting minimal button.
+- **Consequences:** Decorative backgrounds have empty alternative text and ignore pointer input. No extra project copy or animation is added. Preserve the established section heights, measured curtain positions, and accessible link behavior.
+
+## DEC-021 — Distinguish the two project introductions by size and action
+
+- **Date:** 2026-10-15
+- **Status:** Accepted at the owner's request; refines DEC-020's divider presentation.
+- **Decision:** Use a compact Personal / Team heading followed immediately by its existing project slides. Keep University Projects as a full-screen, centered dark-grey introduction with one prominent button to its separate page.
+- **Rationale:** The previous equal-sized dividers suggested the same interaction even though personal work appears on scroll and university work requires a click. The different size and action make that distinction visible.
+- **Consequences:** The Personal / Team curtain slot and surface have a shorter measured height. Curtain positioning and checks must use actual slot positions; the other project panels, anchors, links, and static accessibility fallbacks remain in place.
+
+## DEC-020 — Separate project collections and a complete university project selector
+
+- **Date:** 2026-10-15
+- **Status:** Implemented for the owner's university-project request.
+- **Decision:** Place the Personal / Team divider before the three existing project panels and the University Projects divider after them. Link the university divider to one dedicated collection page; switch one complete project record at a time with a visible list, Previous/Next controls, keyboard input on the image, and swipe.
+- **Rationale:** Each divider introduces its collection. A single selected-project state keeps the image, description, metadata, and external links consistent as visitors browse coursework.
+- **Consequences:** Retain existing personal anchors and routes. New dividers use the existing curtain slots with no artwork-motion target. The university page has its own typed content records and no backend. Preserve complete screenshots rather than recreating the project interfaces. Describe coursework and prototypes without inferring production features or personal tasks from a team-leader label.
+
 ## DEC-019 — Centered SENTRI overview and balanced case-study cards
 
 - **Date:** 2026-10-13

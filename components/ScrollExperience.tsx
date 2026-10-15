@@ -18,7 +18,7 @@ export function ScrollExperience() {
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const link = (event.target as Element).closest<HTMLAnchorElement>("a");
       const slot = link?.closest<HTMLElement>(".curtain-slot");
-      if (slot && link?.pathname.startsWith("/projects/")) {
+      if (slot && (link?.pathname.startsWith("/projects/") || link?.pathname === "/university-projects")) {
         history.replaceState(history.state, "", `#${slot.id}`);
       }
     };

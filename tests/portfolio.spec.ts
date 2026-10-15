@@ -99,17 +99,21 @@ test("each curtain covers a stationary panel at start, midpoint and end, in both
   test.skip(testInfo.project.name !== "desktop", "Touch and reduced motion use ordinary flow");
   await page.goto("/");
   await expect(page.locator(".spring-curtains")).toHaveCount(1);
-  const height = await page.evaluate(() => innerHeight);
-  const panels = page.locator(".screen");
-  const top = async (index: number) => panels.nth(index).evaluate((el) => el.getBoundingClientRect().top);
-  for (const [index, reverse] of [[0, false], [1, false], [2, false], [2, true], [1, true], [0, true]] as const) {
+  const slots = page.locator(".curtain-slot");
+  const positions = await slots.evaluateAll(elements => elements.map(el => (el as HTMLElement).offsetTop));
+  const top = async (index: number) => slots.nth(index).locator(".curtain-surface").evaluate(el => el.getBoundingClientRect().top);
+  for (const [index, reverse] of [[0, false], [1, false], [2, false], [3, false], [4, false], [4, true], [3, true], [2, true], [1, true], [0, true]] as const) {
     for (const progress of reverse ? [1, 0.5, 0] : [0, 0.5, 1]) {
-      await page.evaluate((y) => scrollTo({ top: y, behavior: "instant" }), (index + progress) * height);
-      await expect.poll(async () => Math.abs(await top(index + 1) - height * (1 - progress))).toBeLessThan(3);
+      const distance = positions[index + 1] - positions[index];
+      await page.evaluate((y) => scrollTo({ top: y, behavior: "instant" }), positions[index] + progress * distance);
+      await expect.poll(async () => Math.abs(await top(index + 1) - distance * (1 - progress))).toBeLessThan(3);
       if (progress < 1) await expect.poll(async () => Math.abs(await top(index))).toBeLessThan(3);
       if (progress === 0.5) {
-        const layers = await page.evaluate(() => [0.25, 0.75].map((fraction) => document.elementFromPoint(innerWidth / 2, innerHeight * fraction)?.closest(".curtain-slot")?.id));
-        expect(layers).toEqual([["top", "work", "communimate"][index], ["work", "communimate", "mojo"][index]]);
+        const layers = await page.evaluate((nextTop) => {
+          const nextHeight = document.querySelectorAll<HTMLElement>(".curtain-slot")[nextTop.index + 1].querySelector<HTMLElement>(".curtain-surface")!.offsetHeight;
+          return [nextTop.y / 2, nextTop.y + Math.min(nextHeight / 2, (innerHeight - nextTop.y) / 2)].map(y => document.elementFromPoint(innerWidth / 2, y)?.closest(".curtain-slot")?.id);
+        }, { index, y: distance / 2 });
+        expect(layers).toEqual([["top", "projects", "work", "communimate", "mojo"][index], ["projects", "work", "communimate", "mojo", "university"][index]]);
         if (testInfo.project.name === "desktop") await page.screenshot({ path: testInfo.outputPath(`curtain-${index}-midpoint.png`) });
       }
     }
@@ -123,7 +127,7 @@ test("browser back restores a project reached without a hash", async ({ page }, 
   await trigger.click();
   await expect(trigger).toHaveAttribute("aria-expanded", "true");
   await trigger.click();
-  await page.evaluate(() => scrollTo({ top: innerHeight * 2, behavior: "instant" }));
+  await page.evaluate(() => scrollTo({ top: document.getElementById("communimate")!.offsetTop, behavior: "instant" }));
   await expect.poll(() => page.locator("#communimate").evaluate((el) => Math.abs(el.getBoundingClientRect().top))).toBeLessThan(3);
   await page.getByRole("link", { name: "View Communimate", exact: true }).click();
   await expect(page).toHaveURL(/\/projects\/communimate$/);
@@ -305,11 +309,12 @@ test("scroll settles near panels and reverses; reduced motion stays unanimated",
     await page.mouse.wheel(0, -450);
     await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
     await page.mouse.wheel(0, 850);
-    await expect.poll(() => page.evaluate(() => Math.abs(scrollY - 900))).toBeLessThan(3);
-    await page.mouse.wheel(0, 850);
-    await expect.poll(() => page.evaluate(() => Math.abs(scrollY - 1800))).toBeLessThan(3);
-    await page.mouse.wheel(0, -850);
-    await expect.poll(() => page.evaluate(() => Math.abs(scrollY - 900))).toBeLessThan(3);
+    await expect.poll(() => page.evaluate(() => Math.abs(scrollY - document.getElementById("projects")!.offsetTop))).toBeLessThan(3);
+    const compactHeight = await page.locator("#projects").evaluate(el => (el as HTMLElement).offsetHeight);
+    await page.mouse.wheel(0, compactHeight);
+    await expect.poll(() => page.evaluate(() => Math.abs(scrollY - document.getElementById("work")!.offsetTop))).toBeLessThan(3);
+    await page.mouse.wheel(0, -compactHeight);
+    await expect.poll(() => page.evaluate(() => Math.abs(scrollY - document.getElementById("projects")!.offsetTop))).toBeLessThan(3);
   }
   expect(errors).toEqual([]);
 });

@@ -73,6 +73,7 @@ export function Navigation({ detail = false }: { detail?: boolean }) {
         {[
           ["Intro", "top"],
           ["Work", "work"],
+          ["University", "university"],
           ["About", "about"],
         ].map(([label, id]) => (
           <Link key={id} href={`${detail ? "/" : ""}#${id}`} onClick={() => close(true)}>{label}</Link>

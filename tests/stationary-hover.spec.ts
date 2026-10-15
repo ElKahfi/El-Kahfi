@@ -10,15 +10,18 @@ test("stationary pointer discovers projects after scrolling and respects dismiss
   const preview = page.locator(".project-preview");
   await page.mouse.move(800, 600);
   const immediateTitle = await page.evaluate(async () => {
-    scrollTo({ top: 450, behavior: "instant" });
+    scrollTo({ top: document.getElementById("work")!.offsetTop + 200, behavior: "instant" });
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     return document.querySelector(".project-preview h3")?.textContent;
   });
   expect(immediateTitle).toBe("SENTRI");
   await page.mouse.move(800, 400);
-  for (const [y, title, id] of [[900, "SENTRI", "work"], [1800, "Communimate", "communimate"], [2700, "Mojo", "mojo"], [1800, "Communimate", "communimate"], [900, "SENTRI", "work"]] as const) {
+  for (const [title, id] of [["SENTRI", "work"], ["Communimate", "communimate"], ["Mojo", "mojo"], ["Communimate", "communimate"], ["SENTRI", "work"]] as const) {
+    const y = await page.locator(`#${id}`).evaluate(el => (el as HTMLElement).offsetTop + innerHeight / 2);
     const previous = await page.evaluate(() => scrollY);
-    await page.mouse.wheel(0, y - previous);
+    if (info.project.name === "reduced-motion") await page.evaluate(destination => scrollTo({ top: destination, behavior: "instant" }), y);
+    else await page.mouse.wheel(0, y - previous);
+    await expect.poll(() => page.evaluate(destination => Math.abs(scrollY - destination), y)).toBeLessThan(1);
     await expect(preview).toHaveClass(/is-visible/);
     await expect(preview.locator("h3")).toHaveText(title);
     const art = page.locator(`#${id} .project-art`);

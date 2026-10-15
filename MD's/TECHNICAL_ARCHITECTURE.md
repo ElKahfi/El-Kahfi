@@ -6,14 +6,16 @@ Explain how the implemented portfolio connects. Keep future work in the roadmap 
 
 ## Runtime and routes
 
-The active site uses Next.js 16.4, React 19.3, TypeScript, CSS, and GSAP 3.15 ScrollTrigger. `package-lock.json` records exact installed dependencies. The App Router prerenders the home page and the three known project detail pages. No API, database, authentication, CMS, or persistent visitor data is used.
+The active site uses Next.js 16.4, React 19.3, TypeScript, CSS, and GSAP 3.15 ScrollTrigger. `package-lock.json` records exact installed dependencies. The App Router prerenders the home page, the three known personal project detail pages, and the university collection page. No API, database, authentication, CMS, or persistent visitor data is used.
 
 ```text
 app/layout.tsx — metadata, global CSS, skip link
 ├── app/page.tsx — home (server-rendered composition)
-│   ├── Navigation → hidden menu: #top, #work, /about
+│   ├── Navigation → hidden menu: #top, #work, #university, #about
 │   ├── curtain-slot #top → Hero → city + shared text spotlight
+│   ├── curtain-slot #projects → ProjectSection → Personal / Team introduction
 │   ├── curtain-slot × 3 → data/projects.ts → ProjectPanel × 3
+│   ├── curtain-slot #university → ProjectSection → university collection link
 │   ├── ProjectPreview → hover summary → PreviewMedia → image/video
 │   ├── ScrollExperience → GSAP effects on the panels
 │   ├── VisualMotion → eased pointer translation and scale variables
@@ -22,6 +24,8 @@ app/layout.tsx — metadata, global CSS, skip link
 ├── components/About.tsx — homepage owner description, grouped skills, contact links
 ├── app/projects/[slug]/page.tsx
 │   └── data/projects.ts → detail content, cover, next/return links
+├── app/university-projects/page.tsx
+│   └── data/university-projects.ts → UniversityProjects → selected project and controls
 └── app/not-found.tsx — unknown route/project
 ```
 
@@ -57,6 +61,16 @@ Optional `caseStudy` capability/contribution arrays and optional gallery `title`
 
 React state changes when a different preview becomes active. Pointer positions use refs and direct style updates instead of rerendering the application on every movement.
 
+## University collection
+
+The landing sequence is `top`, `projects`, `work` (SENTRI), `communimate`, `mojo`, `university`, then About in ordinary flow. The Personal / Team introduction is a compact heading in `.curtain-slot--compact`, with matching short slot and fixed-surface heights on enhanced desktop. SENTRI begins immediately after that scroll distance. The University Projects introduction remains a full-screen `.screen` with centered title and one collection link. Neither introduction has `.project-art` or a project hover preview. `ScrollExperience` remembers `#university` when its collection link is activated, and the collection page returns to that anchor. Existing personal project anchors retain their meaning.
+
+`UniversityProjects` owns one selected index. Its visible project list uses pressed-state buttons controlling the project article, with Previous/Next controls and wrapping navigation. Arrow keys operate only while the image is focused; horizontal pointer/touch gestures on the image switch projects without taking over vertical scrolling. A polite live status announces the selected project. The image, title, discipline, summary, role, tools, narrative, caption, and external links derive from the same selected record and render together. External sources open with `noopener noreferrer`.
+
+`ProjectSection` shares a decorative `SectionBackdrop` using the existing city image through `next/image`, with empty alternative text inside an `aria-hidden` container. Scoped CSS adds static charcoal gradients, fading personal-heading rules, and the university inset frame. The collection link has a rounded dark surface and circular arrow with explicit focus styling; reduced motion removes its hover arrow translation. These layers ignore pointer input and do not change curtain measurements or add animation effects.
+
+`data/university-projects.ts` stores a dedicated `UniversityProject` type and three records. Tools are design/documentation tools verified by source files or owner context; no university years or detailed personal tasks are inferred. Whole owner screenshots are served as WebP at original dimensions in `public/images/university/`. Source evidence and access gaps are documented in PROJECT_SOURCES.md. `tests/university.spec.ts` checks entry/return navigation, selection consistency, images, source links, keyboard/swipe navigation, and overflow across the existing device/motion profiles.
+
 ## Hero illumination
 
 The city image sits beneath a dark radial-gradient overlay. JavaScript updates `--light-x` and `--light-y` on the hero using `requestAnimationFrame` and eased interpolation. The transparent center reveals the image; the edge fades into darkness. A separate vignette supports text contrast.
@@ -67,7 +81,7 @@ Animation stops once the light reaches its target. Listeners and pending frames 
 
 ## Project scrolling and previews
 
-Each screen has a fixed visual `.curtain-surface` inside a stable `.curtain-slot` on enhanced desktop layouts. Slots remain one viewport tall in document flow and own the anchors (`top`, `work`, `communimate`, `mojo`); aliases preserve numbered anchors and `sentri`. Increasing stacking order keeps each incoming opaque surface above its predecessor. Enhancement requires a fine pointer, hover, a viewport at least 520px high, and no reduced-motion preference.
+Each full-screen panel has a fixed visual `.curtain-surface` inside a stable `.curtain-slot` on enhanced desktop layouts. Those slots remain one viewport tall in document flow; the Personal / Team slot is shorter and its fixed surface matches its heading height. Slot positions are measured from the document rather than inferred from viewport multiples. The slots own the anchors (`top`, `projects`, `work`, `communimate`, `mojo`, `university`); aliases preserve numbered anchors and `sentri`. Increasing stacking order keeps each incoming opaque surface above its predecessor. Enhancement requires a fine pointer, hover, a viewport at least 520px high, and no reduced-motion preference.
 
 ScrollTrigger observes native scroll position and supplies the destination for one requestAnimationFrame follower. A passive capture-phase wheel listener classifies input before ScrollTrigger's bubbling wheel listener, without preventing input or scrolling the document. Each surface sits at `max(0, sectionStart - visualScroll)`: the outgoing surface stays at zero, and the incoming surface covers the lower half at half a section of visual progress. The final surface releases into ordinary About/footer flow. Touch, reduced motion, and short landscape viewports keep ordinary document flow with no fixed surfaces.
 

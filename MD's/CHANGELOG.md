@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-10-15 — Atmospheric project introductions and a softer collection button
+
+- Retained the approved compact Personal / Team height and full-screen University Projects layout. Reused the hero city illustration as a decorative, low-contrast background with charcoal shading in both sections.
+- Added fine fading rules around the personal heading and quieter, spaced category lettering. Set the university title on two lines with an italic Projects line and a subtle inset frame.
+- Replaced the solid pale rectangle with a dark rounded collection link, soft border, circular arrow, and restrained hover/focus styling. Reduced motion keeps the interaction static.
+- Kept content, anchors, collection destination, and scroll geometry intact. Existing collection/browser checks passed on desktop, mobile, reduced motion, 320px width, and 520px height (seven passed; two profile-specific skips). Desktop and mobile screenshots were visually reviewed. Lint and the production build, including TypeScript validation, passed.
+
+## 2026-10-15 — Distinct project introductions
+
+- Replaced the full-screen Personal / Team divider with a compact, centered heading. It takes roughly a quarter of the viewport and flows directly into SENTRI, without descriptive or navigation copy.
+- Restyled the University Projects divider as a full-screen, centered dark-grey destination with one large “Explore University Projects” button. Removed its paragraph, project list, and peripheral labels.
+- Gave the compact section its own scroll-slot and fixed-surface height so desktop curtains do not reserve a full-screen gap; kept static touch and reduced-motion flow, anchors, and return navigation.
+- Updated browser checks to use measured section positions instead of assuming equal-height slides. The complete browser suite passed (71 applicable checks; 43 profile-specific skips), along with lint, TypeScript, and production build. Visual checks covered desktop, mobile, 320px width, 520px height, reduced motion, keyboard navigation, and the university collection link.
+
+## 2026-10-15 — Personal/team and university project collections
+
+- Added a Projects (Personal / Team) divider before SENTRI, Communimate, and Mojo and a University Projects divider after them. Both use the existing curtain layout and monochrome typography.
+- Added `/university-projects` with a three-project selector, Previous/Next controls, arrow-key navigation on the image, and horizontal swipe. Selecting a project updates its complete image, description, role, tools, narrative, and links.
+- Added Copyin, TukaKu, and Batikeryday, all with the owner-confirmed Team Leader role. Used complete owner screenshots converted to WebP without cropping.
+- Reviewed Copyin’s report and assignment, the supplied Drive folder, both Figma references, and accessible presentation content. Recorded source evidence and access limits in PROJECT_SOURCES.md. No individual task or outcome claims were inferred.
+- Added University to the shared navigation and preserved the landing-page university position when entering the collection. Existing personal project anchors and detail routes remain valid.
+- Updated documentation and browser checks for the two extra curtain positions and the university collection.
+- Validation: lint, TypeScript, and production build passed. Browser checks covered the collection, existing personal details and About, curtain reversal/settling, native scrolling, keyboard input, touch swipe, and reduced motion. Visual checks covered widths from 320 to 1440 pixels and a 520-pixel-high desktop viewport; compact divider styling prevents clipping on short screens. The selected project image loads immediately.
+
 ## 2026-10-13 — Expanded Communimate case study
 
 - Set the owner-supplied role to Independent Project and year to Ongoing.
