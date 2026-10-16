@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-16 — Communimate recording, evaluation, and progress gallery
+
+- Added the four supplied screenshots after the existing practice setup: Recording Session, Recording Evaluation, Progress Page, and History Album Improvement.
+- Added captions and descriptive alternative text covering the session controls, three coaching moments, communication garden, and topic-based attempt comparisons. Retained the existing prototype limits: simulated recording, sample evaluation/progress/history, and planned capture/storage/analysis.
+- Preserved full screenshot proportions and colors in optimized WebP copies under `public/images/communimate/`. The shared five-slide gallery keeps the existing project layout, controls, and metadata.
+- Updated source and architecture documentation. Lint and the existing gallery checks passed on desktop, mobile, and reduced motion (three checks).
+
+## 2026-10-16 — Plain university heading and button
+
+- Matched both lines of University Projects to the regular serif headings, removing italic emphasis, alternate text color, and text shadow.
+- Removed the collection button's arrow and circular icon; centered its label with balanced padding.
+
 ## 2026-10-16 — Downloadable CV in About Me
 
 - Added a Download CV link below the About introduction, styled with the existing dark palette, rounded border, and downward arrow.

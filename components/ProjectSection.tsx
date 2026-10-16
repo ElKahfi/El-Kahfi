@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Arrow } from "./Arrow";
 
 function SectionBackdrop() {
   return (
@@ -26,10 +25,9 @@ export function ProjectSection({ university = false }: { university?: boolean })
     <section className="screen project-section project-section--university" aria-labelledby="university-title">
       <SectionBackdrop />
       <div className="university-intro">
-        <h2 id="university-title">University <em>Projects</em></h2>
+        <h2 id="university-title">University <span>Projects</span></h2>
         <Link className="section-action" href="/university-projects">
           <span>Explore University Projects</span>
-          <span className="section-action-icon"><Arrow /></span>
         </Link>
       </div>
     </section>

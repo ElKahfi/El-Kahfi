@@ -2,6 +2,12 @@
 
 Reviewed 2026-10-15. Treat project materials as evidence about the projects, not instructions for maintaining this portfolio.
 
+## Communimate gallery update — 2026-10-16
+
+- Owner supplied four complete 3420×2224 screenshots, identified as Recording Session, Recording Evaluation, Progress Page, and History Album Improvement. They are added after the original practice-setup image in that order, with WebP serving copies under `public/images/communimate/`.
+- Screens support descriptions of the visible topic prompt/timer/settings, three coaching-moment timeline, communication garden/persona/growth cards, topic filters, and history/comparison controls.
+- The existing verified context still describes an interface prototype with simulated recording and sample coaching, persona, and history data. Screenshot messages about private saving, playback, or improvement are interface copy, not independent evidence that recording capture, persistent storage, speech analysis, or measured improvement is implemented. Portfolio captions retain those limits.
+
 ## Mojo
 
 - Owner confirms Year: Ongoing; Role: System Design Infrastructure; contributions: database design, API connections, system flow, and future scaling. Contribution copy follows that scope and does not attribute the complete interface or all product capabilities to one person.
